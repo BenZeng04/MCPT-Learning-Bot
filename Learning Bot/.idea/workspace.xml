@@ -29,7 +29,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/MCPT-Learning-Bot" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -47,8 +47,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -58,7 +60,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -101,22 +103,22 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="446" y="50" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1608662004082" />
-    <state width="1237" height="188" key="GridCell.Tab.0.bottom" timestamp="1608664523561">
+    <state width="1237" height="188" key="GridCell.Tab.0.bottom" timestamp="1608664719023">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="188" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1608664523561" />
-    <state width="1237" height="188" key="GridCell.Tab.0.center" timestamp="1608664523561">
+    <state width="1237" height="188" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1608664719023" />
+    <state width="1237" height="188" key="GridCell.Tab.0.center" timestamp="1608664719021">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="188" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1608664523561" />
-    <state width="1237" height="188" key="GridCell.Tab.0.left" timestamp="1608664523561">
+    <state width="1237" height="188" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1608664719021" />
+    <state width="1237" height="188" key="GridCell.Tab.0.left" timestamp="1608664719019">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="188" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1608664523561" />
-    <state width="1237" height="188" key="GridCell.Tab.0.right" timestamp="1608664523561">
+    <state width="1237" height="188" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1608664719019" />
+    <state width="1237" height="188" key="GridCell.Tab.0.right" timestamp="1608664719021">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="188" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1608664523561" />
+    <state width="1237" height="188" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1608664719021" />
     <state width="1237" height="204" key="GridCell.Tab.1.bottom" timestamp="1608613675122">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -133,13 +135,13 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="204" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1608613675121" />
-    <state x="121" y="0" key="SettingsEditor" timestamp="1608610923334">
+    <state x="121" y="0" key="SettingsEditor" timestamp="1608664706981">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1608610923334" />
-    <state x="337" y="165" key="com.intellij.ide.util.TipDialog" timestamp="1608660144576">
+    <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1608664706981" />
+    <state x="337" y="165" key="com.intellij.ide.util.TipDialog" timestamp="1608664676757">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="337" y="165" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1608660144576" />
+    <state x="337" y="165" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1608664676757" />
   </component>
 </project>
