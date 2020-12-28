@@ -1,6 +1,9 @@
-import events.CommandListener;
-import events.HelpCommand;
-import events.MessageCommand;
+package mcpt.learning.core;
+
+import mcpt.learning.event.listeners.ChallengeCommand;
+import mcpt.learning.event.listeners.InitChallengeCommand;
+import mcpt.learning.listeners.HelpCommand;
+import mcpt.learning.listeners.MessageCommand;
 import net.dv8tion.jda.api.*;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
@@ -17,9 +20,11 @@ public class Main
             .setChunkingFilter(ChunkingFilter.ALL)
             .setMemberCachePolicy(MemberCachePolicy.ALL)
             .enableIntents(GatewayIntent.GUILD_MEMBERS)
-            .setActivity(Activity.playing("orz"))
+            .setActivity(Activity.playing("Prefix: " + Helper.DEFAULT_PREFIX))
             .build();
         jda.addEventListener(new HelpCommand());
         jda.addEventListener(new MessageCommand());
+        jda.addEventListener(new ChallengeCommand());
+        jda.addEventListener(new InitChallengeCommand());
     }
 }

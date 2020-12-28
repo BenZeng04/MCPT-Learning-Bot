@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d78cc2ff-89e8-4fb5-b363-b2bbc2d41aac" name="Default Changelist" comment="" />
+    <list default="true" id="d78cc2ff-89e8-4fb5-b363-b2bbc2d41aac" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/EventTeam.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/Labyrinth.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/LabyrinthEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/LabyrinthNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/Challenge.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/MultiChoiceChallenge.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/listeners/ChallengeCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/listeners/InitChallengeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/core/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/events/CommandListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/core/CommandListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/events/HelpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/listeners/HelpCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/events/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/core/Helper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/events/MessageCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/listeners/MessageCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/events/CommandListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/events/HelpCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/events/Helper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/events/MessageCommand.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,6 +45,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -57,14 +79,32 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main (1)">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="mcpt.learning.core.Main" />
+      <module name="Learning Bot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="mcpt.learning.core.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+      <option name="MAIN_CLASS_NAME" value="core.Main" />
       <module name="Learning Bot" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -72,6 +112,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -88,6 +129,10 @@
       <updated>1608608625918</updated>
       <workItem from="1608608629001" duration="4839000" />
       <workItem from="1608660017746" duration="4501000" />
+      <workItem from="1608664676891" duration="5875000" />
+      <workItem from="1608767471738" duration="2110000" />
+      <workItem from="1609100698296" duration="4719000" />
+      <workItem from="1609182679037" duration="10203000" />
     </task>
     <servers />
   </component>
@@ -95,30 +140,42 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="233" y="0" key="#Project_Structure" timestamp="1608609535191">
+    <state x="233" y="0" key="#Project_Structure" timestamp="1609190248862">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="0" key="#Project_Structure/0.0.1280.680@0.0.1280.680" timestamp="1608609535191" />
-    <state x="446" y="50" key="#com.intellij.ide.util.MemberChooser" timestamp="1608662004082">
+    <state x="233" y="0" key="#Project_Structure/0.0.1280.680@0.0.1280.680" timestamp="1609190248862" />
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1609186018162">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="446" y="50" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1608662004082" />
-    <state width="1237" height="188" key="GridCell.Tab.0.bottom" timestamp="1608664719023">
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1609186018162" />
+    <state x="446" y="50" key="#com.intellij.ide.util.MemberChooser" timestamp="1609191110656">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="188" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1608664719023" />
-    <state width="1237" height="188" key="GridCell.Tab.0.center" timestamp="1608664719021">
+    <state x="446" y="50" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1609191110656" />
+    <state x="242" y="266" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1609106301125">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="188" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1608664719021" />
-    <state width="1237" height="188" key="GridCell.Tab.0.left" timestamp="1608664719019">
+    <state x="242" y="266" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.680@0.0.1280.680" timestamp="1609106301125" />
+    <state x="438" y="200" width="404" height="287" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1609108400240">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="188" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1608664719019" />
-    <state width="1237" height="188" key="GridCell.Tab.0.right" timestamp="1608664719021">
+    <state x="438" y="200" width="404" height="287" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.680@0.0.1280.680" timestamp="1609108400240" />
+    <state width="1237" height="10" key="GridCell.Tab.0.bottom" timestamp="1609192513048">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="188" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1608664719021" />
+    <state width="1237" height="10" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1609192513048" />
+    <state width="1237" height="10" key="GridCell.Tab.0.center" timestamp="1609192513048">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="10" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1609192513048" />
+    <state width="1237" height="10" key="GridCell.Tab.0.left" timestamp="1609192513048">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="10" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1609192513048" />
+    <state width="1237" height="10" key="GridCell.Tab.0.right" timestamp="1609192513048">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="10" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1609192513048" />
     <state width="1237" height="204" key="GridCell.Tab.1.bottom" timestamp="1608613675122">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -135,13 +192,32 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="204" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1608613675121" />
-    <state x="121" y="0" key="SettingsEditor" timestamp="1608664706981">
+    <state x="121" y="0" key="SettingsEditor" timestamp="1609187072495">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1608664706981" />
-    <state x="337" y="165" key="com.intellij.ide.util.TipDialog" timestamp="1608664676757">
+    <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1609187072495" />
+    <state x="337" y="165" key="com.intellij.ide.util.TipDialog" timestamp="1609182696945">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="337" y="165" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1608664676757" />
+    <state x="337" y="165" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1609182696945" />
+    <state x="315" y="30" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1609186179977">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="315" y="30" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1280.680@0.0.1280.680" timestamp="1609186179977" />
+    <state x="383" y="0" key="refactoring.ChangeSignatureDialog" timestamp="1609190579205">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="383" y="0" key="refactoring.ChangeSignatureDialog/0.0.1280.680@0.0.1280.680" timestamp="1609190579205" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/MultiChoiceChallenge.java</url>
+          <line>97</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
