@@ -6,15 +6,42 @@ import java.util.ArrayList;
 
 public class LabyrinthNode
 {
-    public final int ID;
-    public final String NODE_NAME;
-    public final Challenge CHALLENGE;
-    public final ArrayList<LabyrinthNode> UNLOCKS;
-    public LabyrinthNode(int ID, String NODE_NAME, Challenge challenge)
+    private String challengeID;
+    private LabyrinthNode parent; // unlocked_by
+    private ArrayList<LabyrinthNode> children; // unlocks
+
+    public LabyrinthNode()
     {
-        this.ID = ID;
-        this.NODE_NAME = NODE_NAME;
-        CHALLENGE = challenge;
-        UNLOCKS = new ArrayList<>();
+        children = new ArrayList<>();
+    }
+
+    public LabyrinthNode getParent()
+    {
+        return parent;
+    }
+
+    public void setParent(LabyrinthNode parent)
+    {
+        this.parent = parent;
+    }
+
+    public ArrayList<LabyrinthNode> getChildren()
+    {
+        return children;
+    }
+
+    public void setChildren(ArrayList<LabyrinthNode> children)
+    {
+        this.children = children;
+    }
+
+    public String getChallengeID()
+    {
+        return challengeID;
+    }
+
+    public void setChallengeID(String challengeID)
+    {
+        this.challengeID = challengeID;
     }
 }

@@ -2,26 +2,51 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d78cc2ff-89e8-4fb5-b363-b2bbc2d41aac" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/EventTeam.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/Labyrinth.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/LabyrinthEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/LabyrinthNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/Player.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/Challenge.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/MultiChoiceChallenge.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/listeners/ChallengeCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/listeners/InitChallengeCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/ChallengeFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/ChallengeType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/interfaces/Grader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/interfaces/Parameter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/interfaces/Prompt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/interfaces/attributes/FloatParameterList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/interfaces/attributes/IntegerParameterList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/interfaces/attributes/ParameterList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/interfaces/attributes/SingleFloatParameter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/interfaces/attributes/SingleIntegerParameter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/interfaces/attributes/SingleParameter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/interfaces/attributes/SingleStringParameter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/interfaces/attributes/StringParameterList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/listeners/ChallengeCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/listeners/CreateChallengeCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/listeners/InitChallengeCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/listeners/RemoveChallengeCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/listeners/SubmitCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/listeners/LabyrinthStructureCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/core/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/events/CommandListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/core/CommandListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/events/HelpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/listeners/HelpCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/events/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/core/Helper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/events/MessageCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/listeners/MessageCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/events/CommandListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/events/HelpCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/events/Helper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/events/MessageCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/core/CommandListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/core/CommandListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/core/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/core/Helper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/core/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/core/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/Labyrinth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/Labyrinth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/LabyrinthEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/LabyrinthEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/LabyrinthNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/LabyrinthNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/Challenge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/Challenge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/MultiChoiceChallenge.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/listeners/ChallengeCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/listeners/InitChallengeCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/listeners/HelpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/listeners/HelpCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/core/CommandListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/core/CommandListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/core/Helper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/core/Helper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/core/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/core/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/Labyrinth.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/Labyrinth.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/LabyrinthEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/LabyrinthEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/LabyrinthNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/LabyrinthNode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/Challenge.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/Challenge.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/MultiChoiceChallenge$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/MultiChoiceChallenge$Choice.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/MultiChoiceChallenge.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/listeners/ChallengeCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/listeners/InitChallengeCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/listeners/HelpCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/listeners/HelpCommand.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +70,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Enum" />
         <option value="Class" />
       </list>
@@ -61,13 +87,17 @@
     </option>
   </component>
   <component name="ProjectId" id="1lzn8GBQ87QdcZad1gPzgeXPrBw" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -79,7 +109,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
@@ -132,50 +162,66 @@
       <workItem from="1608664676891" duration="5875000" />
       <workItem from="1608767471738" duration="2110000" />
       <workItem from="1609100698296" duration="4719000" />
-      <workItem from="1609182679037" duration="10203000" />
+      <workItem from="1609182679037" duration="11606000" />
+      <workItem from="1609212035039" duration="2436000" />
+      <workItem from="1609270086325" duration="3191000" />
+      <workItem from="1609386841536" duration="779000" />
+      <workItem from="1609449300493" duration="1236000" />
+      <workItem from="1609466841045" duration="887000" />
+      <workItem from="1609473189452" duration="24584000" />
+      <workItem from="1609551621119" duration="2138000" />
+      <workItem from="1609561409489" duration="2209000" />
+      <workItem from="1609615487474" duration="3260000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="233" y="0" key="#Project_Structure" timestamp="1609190248862">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="233" y="0" key="#Project_Structure/0.0.1280.680@0.0.1280.680" timestamp="1609190248862" />
-    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1609186018162">
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1609543470907">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1609186018162" />
-    <state x="446" y="50" key="#com.intellij.ide.util.MemberChooser" timestamp="1609191110656">
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1609543470907" />
+    <state x="446" y="49" key="#com.intellij.ide.util.MemberChooser" timestamp="1609562323626">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="446" y="50" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1609191110656" />
-    <state x="242" y="266" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1609106301125">
+    <state x="446" y="49" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1609562323626" />
+    <state x="242" y="266" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1609561601601">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="242" y="266" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.680@0.0.1280.680" timestamp="1609106301125" />
+    <state x="242" y="266" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.680@0.0.1280.680" timestamp="1609561601601" />
     <state x="438" y="200" width="404" height="287" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1609108400240">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="438" y="200" width="404" height="287" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.680@0.0.1280.680" timestamp="1609108400240" />
-    <state width="1237" height="10" key="GridCell.Tab.0.bottom" timestamp="1609192513048">
+    <state x="79" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1609536507590">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="10" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1609192513048" />
-    <state width="1237" height="10" key="GridCell.Tab.0.center" timestamp="1609192513048">
+    <state x="79" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.680@0.0.1280.680" timestamp="1609536507590" />
+    <state width="1237" height="2" key="GridCell.Tab.0.bottom" timestamp="1609619019050">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="10" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1609192513048" />
-    <state width="1237" height="10" key="GridCell.Tab.0.left" timestamp="1609192513048">
+    <state width="1237" height="2" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1609619019050" />
+    <state width="1237" height="2" key="GridCell.Tab.0.center" timestamp="1609619019050">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="10" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1609192513048" />
-    <state width="1237" height="10" key="GridCell.Tab.0.right" timestamp="1609192513048">
+    <state width="1237" height="2" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1609619019050" />
+    <state width="1237" height="2" key="GridCell.Tab.0.left" timestamp="1609619019050">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="10" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1609192513048" />
+    <state width="1237" height="2" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1609619019050" />
+    <state width="1237" height="2" key="GridCell.Tab.0.right" timestamp="1609619019050">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="2" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1609619019050" />
     <state width="1237" height="204" key="GridCell.Tab.1.bottom" timestamp="1608613675122">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -192,32 +238,33 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="204" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1608613675121" />
-    <state x="121" y="0" key="SettingsEditor" timestamp="1609187072495">
+    <state x="325" y="52" key="RollbackChangesDialog" timestamp="1609537844542">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1609187072495" />
-    <state x="337" y="165" key="com.intellij.ide.util.TipDialog" timestamp="1609182696945">
+    <state x="325" y="52" key="RollbackChangesDialog/0.0.1280.680@0.0.1280.680" timestamp="1609537844542" />
+    <state x="121" y="0" key="SettingsEditor" timestamp="1609194264552">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="337" y="165" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1609182696945" />
+    <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1609194264552" />
+    <state x="199" y="29" key="VCS.ChangeListViewerDialog" timestamp="1609541493580">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="199" y="29" key="VCS.ChangeListViewerDialog/0.0.1280.680@0.0.1280.680" timestamp="1609541493580" />
+    <state x="337" y="165" key="com.intellij.ide.util.TipDialog" timestamp="1609616350575">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="337" y="165" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1609616350575" />
     <state x="315" y="30" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1609186179977">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="315" y="30" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1280.680@0.0.1280.680" timestamp="1609186179977" />
-    <state x="383" y="0" key="refactoring.ChangeSignatureDialog" timestamp="1609190579205">
+    <state x="383" y="0" key="refactoring.ChangeSignatureDialog" timestamp="1609536778668">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="383" y="0" key="refactoring.ChangeSignatureDialog/0.0.1280.680@0.0.1280.680" timestamp="1609190579205" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/MultiChoiceChallenge.java</url>
-          <line>97</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <state x="383" y="0" key="refactoring.ChangeSignatureDialog/0.0.1280.680@0.0.1280.680" timestamp="1609536778668" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1609545518239">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1609545518239" />
   </component>
 </project>

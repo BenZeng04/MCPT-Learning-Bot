@@ -1,52 +1,143 @@
 package mcpt.learning.event.challenges;
 
+import mcpt.learning.event.LabyrinthNode;
+import mcpt.learning.event.challenges.interfaces.attributes.*;
+import mcpt.learning.event.challenges.interfaces.Grader;
+import mcpt.learning.event.challenges.interfaces.Parameter;
+import mcpt.learning.event.challenges.interfaces.Prompt;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 
-public abstract class Challenge
+public class Challenge
 {
-    public final String DESCRIPTION;
     public final String ID;
-    protected String imageURL;
-    protected Challenge(String description, String id)
+
+    private Grader grader;
+    private Prompt prompt;
+    private HashMap<String, Parameter> challengeParameters;
+
+    protected SingleStringParameter imageURL, description;
+    protected StringParameterList bonusRewards;
+    protected SingleIntegerParameter timeReward;
+    protected String submissionFormat;
+
+    private LabyrinthNode parentNode;
+
+    protected Challenge(String id)
     {
-        DESCRIPTION = description;
         ID = id;
+        challengeParameters = new HashMap<>();
+        imageURL = new SingleStringParameter("IMG", "IMG [image URL (blank to remove)]");
+        timeReward = new SingleIntegerParameter("TIME", "TIME [time reward (minutes)]");
+        description = new SingleStringParameter("DESC", "DESC [description]");
+        bonusRewards = new StringParameterList("BONUS", "BONUS [bonusURL1, bonusURL2... (Image URLs) (blank to remove)]");
+        submissionFormat = "submit [answer]";
+        addParameters(imageURL, description, bonusRewards, timeReward); // Default parameters that are shared across all challenges
     }
 
-    /**
-     * Run when the !initChallenge command is called, targeting this specific challenge. Responsible for initialization of the challenge variables and responding with an appropriate message.
-     * @param param
-     * @param event
-     */
-    public void initChallenge(String param, GuildMessageReceivedEvent event)
+    public String getSubmissionFormat()
     {
-        String[] args = param.split(" ");
-        if(!args[0].equalsIgnoreCase("IMG")) return;
-        imageURL = args[1];
-        TextChannel channel = event.getChannel();
-        EmbedBuilder embed = new EmbedBuilder();
-        embed.setTitle("MCPT Learning Bot | InitChallenge");
-        embed.setDescription("Successfully set the thumbnail image for this challenge.");
-        embed.setColor(new Color(0x3B6EFF));
-        embed.setThumbnail("https://avatars0.githubusercontent.com/u/18370622?s=200&v=4");
-        embed.addField("", "MCPT Learning Bot", false);
-        embed.setImage(imageURL);
-        channel.sendMessage(embed.build()).queue();
+        return submissionFormat;
     }
-    public abstract boolean correctAnswer(String ans);
 
-    /**
-     * Prompts the user to respond to the multiple choice challenge. Called when the !challenge command is called, targetting this specific challege.
-     * Example: !challenge 1A
-     * @param event
-     */
-    public abstract void userPrompt(GuildMessageReceivedEvent event);
-    public abstract int timeReward();
-    public abstract String[] URLBonusRewards();
-    public String getImageURL() { return imageURL; }
-    public void setImageURL(String URL) { imageURL = URL; }
+    public void setSubmissionFormat(String submissionFormat)
+    {
+        this.submissionFormat = submissionFormat;
+    }
+
+    public SingleStringParameter getImageURL()
+    {
+        return imageURL;
+    }
+
+    public void setImageURL(SingleStringParameter imageURL)
+    {
+        this.imageURL = imageURL;
+    }
+
+    public SingleStringParameter getDescription()
+    {
+        return description;
+    }
+
+    public void setDescription(SingleStringParameter description)
+    {
+        this.description = description;
+    }
+
+    public Grader getGrader()
+    {
+        return grader;
+    }
+
+    public void setGrader(Grader grader)
+    {
+        this.grader = grader;
+    }
+
+    public SingleIntegerParameter getTimeReward()
+    {
+        return timeReward;
+    }
+
+    public void setTimeReward(SingleIntegerParameter timeReward)
+    {
+        this.timeReward = timeReward;
+    }
+
+    public StringParameterList getBonusRewards()
+    {
+        return bonusRewards;
+    }
+
+    public void setBonusRewards(StringParameterList bonusRewards)
+    {
+        this.bonusRewards = bonusRewards;
+    }
+
+    public HashMap<String, Parameter> getParameters()
+    {
+        return challengeParameters;
+    }
+
+    public Parameter getParameter(String name)
+    {
+        return challengeParameters.get(name.toUpperCase());
+    }
+
+    public void addParameter(Parameter parameter)
+    {
+        challengeParameters.put(parameter.name().toUpperCase(), parameter);
+    }
+
+    public void addParameters(Parameter... parameters)
+    {
+        for(Parameter parameter: parameters) addParameter(parameter);
+    }
+
+    public Prompt getPrompt()
+    {
+        return prompt;
+    }
+
+    public void setPrompt(Prompt prompt)
+    {
+        this.prompt = prompt;
+    }
+
+    public LabyrinthNode getParentNode()
+    {
+        return parentNode;
+    }
+
+    public void setParentNode(LabyrinthNode parentNode)
+    {
+        this.parentNode = parentNode;
+    }
 }

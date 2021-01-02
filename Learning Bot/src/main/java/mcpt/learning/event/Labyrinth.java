@@ -1,19 +1,30 @@
 package mcpt.learning.event;
 
+import mcpt.learning.event.challenges.Challenge;
+import mcpt.learning.event.challenges.ChallengeFactory;
+import mcpt.learning.event.challenges.ChallengeType;
+
 import java.util.*;
 
 public final class Labyrinth
 {
-    public final String IMAGE_URL;
-    public final String LABYRINTH_DESCRIPTION;
-    public final HashMap<Integer, LabyrinthNode> NODES;
-    public final LabyrinthNode START;
+    public final HashMap<String, Challenge> CHALLENGES;
+    private LabyrinthNode root;
 
-    public Labyrinth(String image_url, String labyrinth_description, HashMap<Integer, LabyrinthNode> nodes, LabyrinthNode start)
+    // The ID is a property of the challenges, the labyrinth nodes only dictate the PATH of challenges.
+
+    public Labyrinth()
     {
-        IMAGE_URL = image_url;
-        LABYRINTH_DESCRIPTION = labyrinth_description;
-        NODES = nodes;
-        START = start;
+        CHALLENGES = new HashMap<>();
+    }
+
+    public LabyrinthNode getRoot()
+    {
+        return root;
+    }
+
+    public void setRoot(LabyrinthNode root)
+    {
+        this.root = root;
     }
 }

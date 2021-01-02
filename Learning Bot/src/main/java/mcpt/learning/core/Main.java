@@ -1,7 +1,7 @@
 package mcpt.learning.core;
 
-import mcpt.learning.event.listeners.ChallengeCommand;
-import mcpt.learning.event.listeners.InitChallengeCommand;
+import mcpt.learning.event.challenges.listeners.*;
+import mcpt.learning.event.listeners.LabyrinthStructureCommand;
 import mcpt.learning.listeners.HelpCommand;
 import mcpt.learning.listeners.MessageCommand;
 import net.dv8tion.jda.api.*;
@@ -14,6 +14,14 @@ import javax.security.auth.login.LoginException;
 
 public class Main
 {
+    /*
+    TODO:
+    Implement the actual labyrinth tree-structure within commands.
+    Implement a saving system such that the bot can go offline and online again, while having information saved.
+    Implement the other types of challenges (especially the manual grading system)
+    Implement the actual event (time, unlocks, teams, points, etc)
+    Other stuff?
+     */
     public static void main(String[] args) throws LoginException
     {
         JDA jda = JDABuilder.createDefault("NzkwNzkxMjQ4NzEzNjEzMzIy.X-FvvQ.w5DOwIQW7sep71eEc2IUqi_1iEc")
@@ -22,9 +30,9 @@ public class Main
             .enableIntents(GatewayIntent.GUILD_MEMBERS)
             .setActivity(Activity.playing("Prefix: " + Helper.DEFAULT_PREFIX))
             .build();
-        jda.addEventListener(new HelpCommand());
-        jda.addEventListener(new MessageCommand());
-        jda.addEventListener(new ChallengeCommand());
-        jda.addEventListener(new InitChallengeCommand());
+        jda.addEventListener(new HelpCommand(),
+            new MessageCommand(), new ChallengeCommand(),
+            new InitChallengeCommand(), new CreateChallengeCommand(),
+            new RemoveChallengeCommand(), new SubmitCommand(), new LabyrinthStructureCommand());
     }
 }

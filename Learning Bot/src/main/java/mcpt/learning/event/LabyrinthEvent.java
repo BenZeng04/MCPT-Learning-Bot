@@ -1,13 +1,13 @@
 package mcpt.learning.event;
 
-/*
-TODO list:
-1. Mini-challenge submission setup
-2. General Command Setup
-3. Event, Players & Teams
-4. Practice Sessions
- */
+import java.util.HashMap;
+
 public class LabyrinthEvent
 {
+    static
+    {
+        // TODO initialize file IO to read information from labyrinth event.
 
+    }
+    public static Labyrinth labyrinth = new Labyrinth();
 }

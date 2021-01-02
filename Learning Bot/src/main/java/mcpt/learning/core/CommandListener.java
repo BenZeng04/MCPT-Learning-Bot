@@ -28,7 +28,7 @@ public abstract class CommandListener extends ListenerAdapter
         EmbedBuilder embed = new EmbedBuilder();
         embed.setTitle("MCPT Learning Bot | " + COMMAND_NAME.substring(0, 1).toUpperCase() + COMMAND_NAME.substring(1));
         embed.setColor(new Color(0x3B6EFF));
-        embed.setDescription("**Arguments:** " + DEFAULT_ARGUMENTS);
+        embed.setDescription("**Arguments:** " + Helper.getPrefix(event.getGuild()) + DEFAULT_ARGUMENTS);
         channel.sendMessage(embed.build()).queue();
     }
     public abstract void onCommandRun(String args, GuildMessageReceivedEvent event);
@@ -49,6 +49,7 @@ public abstract class CommandListener extends ListenerAdapter
             try
             {
                 onCommandRun(updatedArgs.toString(), event);
+                Helper.save(); // Updates the locally stored files
             }
             catch(Exception e)
             {
