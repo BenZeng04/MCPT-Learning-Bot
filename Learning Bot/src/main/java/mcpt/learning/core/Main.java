@@ -16,7 +16,6 @@ public class Main
 {
     /*
     TODO:
-    Implement the actual labyrinth tree-structure within commands.
     Implement a saving system such that the bot can go offline and online again, while having information saved.
     Implement the other types of challenges (especially the manual grading system)
     Implement the actual event (time, unlocks, teams, points, etc)
