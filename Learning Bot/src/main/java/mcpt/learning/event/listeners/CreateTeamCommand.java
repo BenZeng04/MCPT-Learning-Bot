@@ -2,8 +2,9 @@ package mcpt.learning.event.listeners;
 
 import mcpt.learning.core.CommandListener;
 import mcpt.learning.core.Helper;
-import mcpt.learning.event.EventTeam;
+import mcpt.learning.event.LabyrinthTeam;
 import mcpt.learning.event.LabyrinthEvent;
+import mcpt.learning.event.TeamEvent;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
@@ -20,7 +21,7 @@ public class CreateTeamCommand extends CommandListener
     @Override
     public void onCommandRun(String args, GuildMessageReceivedEvent event)
     {
-        LabyrinthEvent labyrinthEvent = Helper.getLabyrinth(event);
+        TeamEvent teamEvent = (TeamEvent) Helper.getMCPTEvent(event);
         String[] tokens = args.split(" ");
         String teamName = tokens[0];
         TextChannel channel = event.getChannel();
@@ -53,7 +54,7 @@ public class CreateTeamCommand extends CommandListener
                 channel.sendMessage(embed.build()).queue();
                 return;
             }
-            if(labyrinthEvent.getTeamFromUser(memberID) != null)
+            if(teamEvent.getTeamFromUser(memberID) != null)
             {
                 embed.setDescription("ERROR: One of these users are already in a team!\nYou can view all existing teams and users in these teams using the !teamList command.");
                 channel.sendMessage(embed.build()).queue();
@@ -61,6 +62,6 @@ public class CreateTeamCommand extends CommandListener
             }
             teamMembers[i - 1] = memberID;
         }
-        labyrinthEvent.setTeam(teamName, new EventTeam(teamName, teamMembers));
+        teamEvent.addTeam(teamName, teamMembers);
     }
 }

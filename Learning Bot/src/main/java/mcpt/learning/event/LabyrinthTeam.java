@@ -9,21 +9,19 @@ import java.util.*;
  * !createTeam [name] [members] (if members exist in other teams, that other team must be deleted)
  * Team names MUST BE ALPHANUMERIC.
  */
-public class EventTeam
+public class LabyrinthTeam extends Team
 {
     public static final int FILE_PARSING_CONSTANT = 3; // Constant for the amount of lines an event will take up in a file (Excluding name and team members)
-    public final String NAME;
-    public final String[] teamMemberIDs;
+
     private LabyrinthEvent event;
     private Set<String> challengeAttempts;
     private Set<String> correctChallengeAttempts;
     private long bonusTimeRecieved;
     private int points;
 
-    public EventTeam(String name, String[] teamMemberIDs)
+    public LabyrinthTeam(String teamName, String[] teamMembers)
     {
-        NAME = name;
-        this.teamMemberIDs = teamMemberIDs;
+        super(teamName, teamMembers);
         challengeAttempts = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
         correctChallengeAttempts = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
     }

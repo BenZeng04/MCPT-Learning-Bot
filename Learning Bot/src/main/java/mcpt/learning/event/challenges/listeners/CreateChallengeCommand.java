@@ -3,10 +3,12 @@ package mcpt.learning.event.challenges.listeners;
 import mcpt.learning.core.CommandListener;
 import mcpt.learning.core.Helper;
 import mcpt.learning.event.LabyrinthEvent;
+import mcpt.learning.event.LabyrinthTeam;
 import mcpt.learning.event.challenges.Challenge;
 import mcpt.learning.event.challenges.ChallengeFactory;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
@@ -28,7 +30,7 @@ public class CreateChallengeCommand extends CommandListener
     @Override
     public void onCommandRun(String args, GuildMessageReceivedEvent event)
     {
-        LabyrinthEvent labyrinthEvent = Helper.getLabyrinth(event);
+        LabyrinthEvent labyrinthEvent = (LabyrinthEvent) Helper.getMCPTEvent(event);
 
         String[] tokens = args.split(" ");
         String challengeName = tokens[0];

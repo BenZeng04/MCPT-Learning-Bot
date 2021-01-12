@@ -29,7 +29,7 @@ public class GradeCommand extends CommandListener
     @Override
     public void onCommandRun(String args, GuildMessageReceivedEvent event)
     {
-        LabyrinthEvent labyrinthEvent = Helper.getLabyrinth(event);
+        LabyrinthEvent labyrinthEvent = (LabyrinthEvent) Helper.getMCPTEvent(event);
 
         String[] tokens = args.split(" ");
         int ID = Integer.parseInt(tokens[0]);

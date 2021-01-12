@@ -1,4 +1,4 @@
-package mcpt.learning.event.listeners;
+package mcpt.learning.event.challenges.listeners;
 
 import mcpt.learning.core.CommandListener;
 import mcpt.learning.event.LabyrinthEvent;

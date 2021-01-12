@@ -26,7 +26,7 @@ public class SetAdminChannelCommand extends CommandListener
     @Override
     public void onCommandRun(String args, GuildMessageReceivedEvent event)
     {
-        LabyrinthEvent labyrinthEvent = Helper.getLabyrinth(event);
+        LabyrinthEvent labyrinthEvent = (LabyrinthEvent) Helper.getMCPTEvent(event);
         TextChannel channel = event.getChannel();
         EmbedBuilder embed = new EmbedBuilder();
         embed.setTitle("MCPT Learning Bot | SetAdminChannel");

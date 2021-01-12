@@ -2,7 +2,7 @@ package mcpt.learning.event.challenges.listeners;
 
 import mcpt.learning.core.CommandListener;
 import mcpt.learning.core.Helper;
-import mcpt.learning.event.EventTeam;
+import mcpt.learning.event.LabyrinthTeam;
 import mcpt.learning.event.LabyrinthEvent;
 import mcpt.learning.event.challenges.Challenge;
 
@@ -25,10 +25,10 @@ public class ChallengeCommand extends CommandListener
     @Override
     public void onCommandRun(String args, GuildMessageReceivedEvent event)
     {
-        LabyrinthEvent labyrinthEvent = Helper.getLabyrinth(event);
+        LabyrinthEvent labyrinthEvent = (LabyrinthEvent) Helper.getMCPTEvent(event);
         Member user = event.getMember();
 
-        EventTeam team = labyrinthEvent.getTeamFromUser(event.getMember().getId());
+        LabyrinthTeam team = (LabyrinthTeam) labyrinthEvent.getTeamFromUser(event.getMember().getId());
 
         if(!user.getPermissions().contains(Permission.ADMINISTRATOR))
         {

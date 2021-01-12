@@ -3,7 +3,7 @@ package mcpt.learning.event.challenges.listeners;
 import mcpt.learning.core.CommandListener;
 import mcpt.learning.core.Helper;
 import mcpt.learning.event.ChallengeSubmissionEvent;
-import mcpt.learning.event.EventTeam;
+import mcpt.learning.event.LabyrinthTeam;
 import mcpt.learning.event.LabyrinthEvent;
 import mcpt.learning.event.challenges.Challenge;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -27,9 +27,9 @@ public class SubmitCommand extends CommandListener
     @Override
     public void onCommandRun(String args, GuildMessageReceivedEvent event)
     {
-        LabyrinthEvent labyrinthEvent = Helper.getLabyrinth(event);
+        LabyrinthEvent labyrinthEvent = (LabyrinthEvent) Helper.getMCPTEvent(event);
         Member user = event.getMember();
-        EventTeam team = labyrinthEvent.getTeamFromUser(event.getMember().getId());
+        LabyrinthTeam team = (LabyrinthTeam) labyrinthEvent.getTeamFromUser(event.getMember().getId());
 
         String[] tokens = args.split(" ");
         String challengeName = tokens[0];
@@ -144,7 +144,7 @@ public class SubmitCommand extends CommandListener
         embed.setColor(new Color(0x3B6EFF));
         embed.setThumbnail("https://avatars0.githubusercontent.com/u/18370622?s=200&v=4");
 
-        LabyrinthEvent labyrinthEvent = Helper.getLabyrinth(submissionEvent.getParentEvent());
+        LabyrinthEvent labyrinthEvent = (LabyrinthEvent) Helper.getMCPTEvent(submissionEvent.getParentEvent());
         Challenge challenge = labyrinthEvent.getChallenge(submissionEvent.getChallengeID());
 
         if(challenge.getTimeReward().getValue() == null)
@@ -170,7 +170,7 @@ public class SubmitCommand extends CommandListener
             completionPrompt.append("\nTo view all of your challenges you can submit to, use the !unlockedChallenges command.");
         }
 
-        EventTeam team = labyrinthEvent.getTeam(submissionEvent.getTeamID());
+        LabyrinthTeam team = (LabyrinthTeam) labyrinthEvent.getTeam(submissionEvent.getTeamID());
         if(team != null) team.onChallengeFailure(challenge);
 
         embed.setDescription(completionPrompt.toString());
@@ -185,7 +185,7 @@ public class SubmitCommand extends CommandListener
         embed.setColor(new Color(0x3B6EFF));
         embed.setThumbnail("https://avatars0.githubusercontent.com/u/18370622?s=200&v=4");
 
-        LabyrinthEvent labyrinthEvent = Helper.getLabyrinth(submissionEvent.getParentEvent());
+        LabyrinthEvent labyrinthEvent = (LabyrinthEvent) Helper.getMCPTEvent(submissionEvent.getParentEvent());
         Challenge challenge = labyrinthEvent.getChallenge(submissionEvent.getChallengeID());
 
         if(challenge.getTimeReward().getValue() == null)
@@ -216,7 +216,7 @@ public class SubmitCommand extends CommandListener
             completionPrompt.append("\nTo view all of your challenges you can submit to, use the !unlockedChallenges command.");
         }
 
-        EventTeam team = labyrinthEvent.getTeam(submissionEvent.getTeamID());
+        LabyrinthTeam team = (LabyrinthTeam) labyrinthEvent.getTeam(submissionEvent.getTeamID());
         if(team != null) team.onChallengeSuccess(challenge);
 
         embed.setDescription(completionPrompt.toString());

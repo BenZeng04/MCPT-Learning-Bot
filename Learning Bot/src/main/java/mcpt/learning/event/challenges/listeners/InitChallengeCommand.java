@@ -12,7 +12,6 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.awt.*;
 import java.util.Map;
-import java.util.Map;
 
 public class InitChallengeCommand extends CommandListener
 {
@@ -30,7 +29,7 @@ public class InitChallengeCommand extends CommandListener
     @Override
     public void onCommandRun(String args, GuildMessageReceivedEvent event)
     {
-        LabyrinthEvent labyrinthEvent = Helper.getLabyrinth(event);
+        LabyrinthEvent labyrinthEvent = (LabyrinthEvent) Helper.getMCPTEvent(event);
 
         String[] tokens = args.split(" ");
         String challengeName = tokens[0];

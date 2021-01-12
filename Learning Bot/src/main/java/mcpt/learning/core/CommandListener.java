@@ -1,6 +1,5 @@
 package mcpt.learning.core;
 
-import mcpt.learning.event.LabyrinthEvent;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -50,9 +49,9 @@ public abstract class CommandListener extends ListenerAdapter
             }
             try
             {
-                LabyrinthEvent labyrinthEvent = Helper.reloadLabyrinth(event); // Loads the event information from file
+                Helper.reload(event); // Loads the event information from file
                 onCommandRun(updatedArgs.toString(), event);
-                Helper.save(labyrinthEvent, event); // Updates the locally stored files
+                Helper.save(event); // Updates the locally stored files
             }
             catch(Exception e)
             {
