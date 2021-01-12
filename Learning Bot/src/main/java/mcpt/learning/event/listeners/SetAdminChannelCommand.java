@@ -1,4 +1,4 @@
-package mcpt.learning.event.challenges.listeners;
+package mcpt.learning.event.listeners;
 
 import mcpt.learning.core.CommandListener;
 import mcpt.learning.core.Helper;
@@ -10,11 +10,11 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.awt.*;
 
-public class RemoveChallengeCommand extends CommandListener
+public class SetAdminChannelCommand extends CommandListener
 {
-    public RemoveChallengeCommand()
+    public SetAdminChannelCommand()
     {
-        super("RemoveChallenge", "removechallenge [challengeName]");
+        super("SetAdminChannel", "setAdminChannel (use this command in the channel you want to be the admin channel.)");
     }
 
     @Override
@@ -27,15 +27,12 @@ public class RemoveChallengeCommand extends CommandListener
     public void onCommandRun(String args, GuildMessageReceivedEvent event)
     {
         LabyrinthEvent labyrinthEvent = Helper.getLabyrinth(event);
-
         TextChannel channel = event.getChannel();
-        labyrinthEvent.setChallenge(args, null);
-
         EmbedBuilder embed = new EmbedBuilder();
-        embed.setTitle("MCPT Learning Bot | Challenge " + args);
+        embed.setTitle("MCPT Learning Bot | SetAdminChannel");
         embed.setColor(new Color(0x3B6EFF));
-        embed.setThumbnail("https://avatars0.githubusercontent.com/u/18370622?s=200&v=4");
-        embed.setDescription("Successfully removed challenge " + args + ".");
+        labyrinthEvent.setAdminChannel(event.getChannel());
+        embed.setDescription("Success.");
         channel.sendMessage(embed.build()).queue();
     }
 }

@@ -2,10 +2,13 @@ package mcpt.learning.event.challenges.listeners;
 
 import mcpt.learning.core.CommandListener;
 import mcpt.learning.core.Helper;
+import mcpt.learning.event.EventTeam;
 import mcpt.learning.event.LabyrinthEvent;
 import mcpt.learning.event.challenges.Challenge;
 
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
@@ -22,8 +25,40 @@ public class ChallengeCommand extends CommandListener
     @Override
     public void onCommandRun(String args, GuildMessageReceivedEvent event)
     {
-        String challengeName = args.toUpperCase();
-        Challenge challenge = LabyrinthEvent.labyrinth.CHALLENGES.get(challengeName);
+        LabyrinthEvent labyrinthEvent = Helper.getLabyrinth(event);
+        Member user = event.getMember();
+
+        EventTeam team = labyrinthEvent.getTeamFromUser(event.getMember().getId());
+
+        if(!user.getPermissions().contains(Permission.ADMINISTRATOR))
+        {
+            // Default errors for non-admins
+            if(team == null)
+            {
+                TextChannel channel = event.getChannel();
+                EmbedBuilder embed = new EmbedBuilder();
+                embed.setTitle("MCPT Learning Bot | SubmitCommand");
+                embed.setColor(new Color(0x3B6EFF));
+                embed.setThumbnail("https://avatars0.githubusercontent.com/u/18370622?s=200&v=4");
+                embed.setDescription("ERROR: You're not in a team!");
+                channel.sendMessage(embed.build()).queue();
+                return;
+            }
+            if(!labyrinthEvent.hasStarted())
+            {
+                TextChannel channel = event.getChannel();
+                EmbedBuilder embed = new EmbedBuilder();
+                embed.setTitle("MCPT Learning Bot | SubmitCommand");
+                embed.setColor(new Color(0x3B6EFF));
+                embed.setThumbnail("https://avatars0.githubusercontent.com/u/18370622?s=200&v=4");
+                embed.setDescription("ERROR: The event hasn't started yet!");
+                channel.sendMessage(embed.build()).queue();
+                return;
+            }
+        }
+
+        String challengeName = args;
+        Challenge challenge = labyrinthEvent.getChallenge(challengeName);
         if(challenge == null) throw new IllegalArgumentException();
 
         TextChannel channel = event.getChannel();
@@ -33,7 +68,7 @@ public class ChallengeCommand extends CommandListener
         try
         {
             if(challenge.getDescription().getValue() == null) throw new IllegalArgumentException();
-            embed.setDescription("**QUESTION: **" + challenge.getDescription().getValue() + "\n\nSubmit to this challenge using: " + Helper.getPrefix(event.getGuild()) + challenge.getSubmissionFormat() +
+            embed.setDescription("**QUESTION: **" + challenge.getDescription().getValue() + "\n\nSubmit to this challenge using: " + Helper.getPrefix(event) + challenge.getSubmissionFormat() +
                 "\n\n" + challenge.getPrompt().createPrompt());
         }
         catch(Exception e)
@@ -52,7 +87,7 @@ public class ChallengeCommand extends CommandListener
             }
             catch(Exception e)
             {
-                // Blank catch clause to allow for the removal of images
+                embed.setDescription("ERROR: Invalid Image URL!");
             }
         }
         channel.sendMessage(embed.build()).queue();

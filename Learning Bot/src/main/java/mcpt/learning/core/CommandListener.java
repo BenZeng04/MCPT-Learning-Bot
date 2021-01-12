@@ -1,16 +1,18 @@
 package mcpt.learning.core;
 
+import mcpt.learning.event.LabyrinthEvent;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import java.awt.*;
-import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 public abstract class CommandListener extends ListenerAdapter
 {
-    public static HashMap<String, CommandListener> map = new HashMap<>();
+    public static Map<String, CommandListener> map = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
     public final String COMMAND_NAME;
     public final String DEFAULT_ARGUMENTS;
 
@@ -28,7 +30,7 @@ public abstract class CommandListener extends ListenerAdapter
         EmbedBuilder embed = new EmbedBuilder();
         embed.setTitle("MCPT Learning Bot | " + COMMAND_NAME.substring(0, 1).toUpperCase() + COMMAND_NAME.substring(1));
         embed.setColor(new Color(0x3B6EFF));
-        embed.setDescription("**Arguments:** " + Helper.getPrefix(event.getGuild()) + DEFAULT_ARGUMENTS);
+        embed.setDescription("**Arguments:** " + Helper.getPrefix(event) + DEFAULT_ARGUMENTS);
         channel.sendMessage(embed.build()).queue();
     }
     public abstract void onCommandRun(String args, GuildMessageReceivedEvent event);
@@ -38,7 +40,7 @@ public abstract class CommandListener extends ListenerAdapter
         if(!hasPermissions(event)) return;
         if(event.getAuthor().isBot()) return;
         String[] args = event.getMessage().getContentRaw().split(" ");
-        if(args[0].equalsIgnoreCase(Helper.getPrefix(event.getGuild()) + COMMAND_NAME))
+        if(args[0].equalsIgnoreCase(Helper.getPrefix(event) + COMMAND_NAME))
         {
             StringBuilder updatedArgs = new StringBuilder();
             for(int i = 0; i < args.length - 1; i++)
@@ -48,8 +50,9 @@ public abstract class CommandListener extends ListenerAdapter
             }
             try
             {
+                LabyrinthEvent labyrinthEvent = Helper.reloadLabyrinth(event); // Loads the event information from file
                 onCommandRun(updatedArgs.toString(), event);
-                Helper.save(); // Updates the locally stored files
+                Helper.save(labyrinthEvent, event); // Updates the locally stored files
             }
             catch(Exception e)
             {

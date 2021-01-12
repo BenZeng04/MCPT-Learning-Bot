@@ -1,7 +1,6 @@
 package mcpt.learning.event.challenges;
 
-import mcpt.learning.core.Helper;
-import mcpt.learning.event.LabyrinthNode;
+import mcpt.learning.event.challenges.interfaces.Prompt;
 import mcpt.learning.event.challenges.interfaces.attributes.SingleIntegerParameter;
 import mcpt.learning.event.challenges.interfaces.attributes.StringParameterList;
 
@@ -9,13 +8,13 @@ import java.util.ArrayList;
 
 public class ChallengeFactory
 {
-    public static Challenge createChallenge(String ID, ChallengeType type)
+    public static Challenge createChallenge(String ID, String type)
     {
+        Challenge ret = new Challenge(ID, type);
         switch(type)
         {
-            case MULTIPLE_CHOICE:
-                Challenge ret = new Challenge(ID);
-
+            case "MULTIPLE_CHOICE":
+            {
                 StringParameterList choices = new StringParameterList("CHOICES", "CHOICES [choice1,choice2,choice3...]");
                 SingleIntegerParameter answerID = new SingleIntegerParameter("ANSWER", "ANSWER [index (one-indexed)]");
 
@@ -34,9 +33,18 @@ public class ChallengeFactory
                     }
                     return optionPrompt.toString();
                 });
-                return ret;
+                break;
+            }
+            case "MANUAL_GRADE":
+            {
+                ret.setSubmissionFormat("submit " + ID + " [Answer (Any format you like!)]");
+                ret.setPrompt(() -> "**This challenge will be manually graded by an administrator.**");
+                // Null grader
+                break;
+            }
             default:
                 return null; // haven't created yet : (
         }
+        return ret;
     }
 }

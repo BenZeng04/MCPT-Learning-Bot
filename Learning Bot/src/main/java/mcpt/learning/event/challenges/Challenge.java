@@ -1,54 +1,44 @@
 package mcpt.learning.event.challenges;
 
-import mcpt.learning.event.LabyrinthNode;
-import mcpt.learning.event.challenges.interfaces.attributes.*;
+import mcpt.learning.core.Helper;
 import mcpt.learning.event.challenges.interfaces.Grader;
 import mcpt.learning.event.challenges.interfaces.Parameter;
 import mcpt.learning.event.challenges.interfaces.Prompt;
-import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.TextChannel;
-import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import mcpt.learning.event.challenges.interfaces.attributes.SingleIntegerParameter;
+import mcpt.learning.event.challenges.interfaces.attributes.SingleStringParameter;
+import mcpt.learning.event.challenges.interfaces.attributes.StringParameterList;
 
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Challenge
 {
     public final String ID;
+    private final String type;
 
     private Grader grader;
     private Prompt prompt;
-    private HashMap<String, Parameter> challengeParameters;
+    private Map<String, Parameter> challengeParameters;
 
-    protected SingleStringParameter imageURL, description;
+    protected SingleStringParameter imageURL, description, prerequisite;
     protected StringParameterList bonusRewards;
     protected SingleIntegerParameter timeReward;
     protected String submissionFormat;
 
-    private LabyrinthNode parentNode;
-
-    protected Challenge(String id)
+    protected Challenge(String id, String type)
     {
+        if(!Helper.isAlphanumeric(id))
+            throw new IllegalArgumentException("Challenge IDs must be alphanumeric.");
         ID = id;
-        challengeParameters = new HashMap<>();
-        imageURL = new SingleStringParameter("IMG", "IMG [image URL (blank to remove)]");
+        this.type = type;
+        challengeParameters = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+        imageURL = new SingleStringParameter("IMG", "IMG [image URL (\"null\" to remove)]");
         timeReward = new SingleIntegerParameter("TIME", "TIME [time reward (minutes)]");
         description = new SingleStringParameter("DESC", "DESC [description]");
-        bonusRewards = new StringParameterList("BONUS", "BONUS [bonusURL1, bonusURL2... (Image URLs) (blank to remove)]");
+        prerequisite = new SingleStringParameter("PREREQ", "PREREQ [challenge prerequisite ID (\"null\" for no prerequisite)]");
+        bonusRewards = new StringParameterList("BONUS", "BONUS [bonusURL1, bonusURL2... (Image URLs) (\"null\" to remove)]");
         submissionFormat = "submit [answer]";
         addParameters(imageURL, description, bonusRewards, timeReward); // Default parameters that are shared across all challenges
-    }
-
-    public String getSubmissionFormat()
-    {
-        return submissionFormat;
-    }
-
-    public void setSubmissionFormat(String submissionFormat)
-    {
-        this.submissionFormat = submissionFormat;
     }
 
     public SingleStringParameter getImageURL()
@@ -56,19 +46,19 @@ public class Challenge
         return imageURL;
     }
 
-    public void setImageURL(SingleStringParameter imageURL)
-    {
-        this.imageURL = imageURL;
-    }
-
     public SingleStringParameter getDescription()
     {
         return description;
     }
 
-    public void setDescription(SingleStringParameter description)
+    public SingleIntegerParameter getTimeReward()
     {
-        this.description = description;
+        return timeReward;
+    }
+
+    public StringParameterList getBonusRewards()
+    {
+        return bonusRewards;
     }
 
     public Grader getGrader()
@@ -81,44 +71,35 @@ public class Challenge
         this.grader = grader;
     }
 
-    public SingleIntegerParameter getTimeReward()
+    public String getSubmissionFormat()
     {
-        return timeReward;
+        return submissionFormat;
     }
 
-    public void setTimeReward(SingleIntegerParameter timeReward)
+    public void setSubmissionFormat(String submissionFormat)
     {
-        this.timeReward = timeReward;
+        this.submissionFormat = submissionFormat;
     }
 
-    public StringParameterList getBonusRewards()
-    {
-        return bonusRewards;
-    }
-
-    public void setBonusRewards(StringParameterList bonusRewards)
-    {
-        this.bonusRewards = bonusRewards;
-    }
-
-    public HashMap<String, Parameter> getParameters()
+    public Map<String, Parameter> getParameters()
     {
         return challengeParameters;
     }
 
     public Parameter getParameter(String name)
     {
-        return challengeParameters.get(name.toUpperCase());
+        return challengeParameters.get(name);
     }
 
     public void addParameter(Parameter parameter)
     {
-        challengeParameters.put(parameter.name().toUpperCase(), parameter);
+        challengeParameters.put(parameter.name(), parameter);
     }
 
     public void addParameters(Parameter... parameters)
     {
-        for(Parameter parameter: parameters) addParameter(parameter);
+        for(Parameter parameter: parameters)
+            addParameter(parameter);
     }
 
     public Prompt getPrompt()
@@ -131,13 +112,66 @@ public class Challenge
         this.prompt = prompt;
     }
 
-    public LabyrinthNode getParentNode()
+    public SingleStringParameter getPrerequisite()
     {
-        return parentNode;
+        return prerequisite;
     }
 
-    public void setParentNode(LabyrinthNode parentNode)
+    // File IO stuff
+
+    /**
+     * Creates a multi-line string that will contain all the information this challenge contains for storing in a file.
+     *
+     * @return This string.
+     */
+    @Override
+    public String toString()
     {
-        this.parentNode = parentNode;
+        // Note that the challenge made up of three interfaces, which are initialized by the ChallengeFactory and determined by the type.
+        // The challenge stores a collection of parameters which have a name, and a string value that can be parsed by the parameter.
+        StringBuilder ret = new StringBuilder();
+        // First Line: [ID] [type] [parameterCount]
+        ret.append(ID).append(" ").append(type).append(" ").append(challengeParameters.entrySet().size()).append("\n");
+        // Next N Parameters (where N is the parameter count): [Parameter name] [Parameter value line count] -> Next LineCount lines: [Parameter value]
+        // Example:
+        // DESC 5
+        // This is
+        // an example
+        // of a
+        // description that
+        // takes up 5 lines
+        int count = 0;
+        for(Map.Entry<String, Parameter> parameterEntry: challengeParameters.entrySet())
+        {
+            count++;
+            ret.append(parameterEntry.getValue());
+            if(count != challengeParameters.entrySet().size())
+                ret.append("\n");
+        }
+        return ret.toString();
+    }
+
+    /**
+     * We assume that the challenge that is calling parseFromFile() has already been created using an ID and a type from the ChallengeFactory.
+     * args contains a list of all the parameters in the format [Parameter name] [parameter value] (no [])
+     *
+     * @param args the parameters in the format specified above
+     */
+    public void parseFromFile(String[] args)
+    {
+        for(String param: args)
+        {
+            String[] tokens = param.split(" ");
+            String paramName = tokens[0];
+            StringBuilder paramArgs = new StringBuilder();
+            for(int i = 1; i < tokens.length; i++)
+            {
+                paramArgs.append(tokens[i]);
+                if(i != tokens.length - 1)
+                    paramArgs.append(' ');
+            }
+            if(!paramArgs.toString().equals("null"))
+                challengeParameters.get(paramName).init(paramArgs.toString());
+        }
     }
 }

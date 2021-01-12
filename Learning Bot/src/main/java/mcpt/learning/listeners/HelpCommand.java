@@ -17,7 +17,6 @@ public class HelpCommand extends CommandListener
     @Override
     public void onCommandRun(String args, GuildMessageReceivedEvent event)
     {
-        // TODO fix the help command... eventually?
         if(args.length() == 0)
         {
             TextChannel channel = event.getChannel();

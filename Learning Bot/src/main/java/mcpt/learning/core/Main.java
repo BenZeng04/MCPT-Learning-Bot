@@ -1,7 +1,8 @@
 package mcpt.learning.core;
 
 import mcpt.learning.event.challenges.listeners.*;
-import mcpt.learning.event.listeners.LabyrinthStructureCommand;
+import mcpt.learning.event.listeners.CreateTeamCommand;
+import mcpt.learning.event.listeners.SetAdminChannelCommand;
 import mcpt.learning.listeners.HelpCommand;
 import mcpt.learning.listeners.MessageCommand;
 import net.dv8tion.jda.api.*;
@@ -15,23 +16,30 @@ import javax.security.auth.login.LoginException;
 public class Main
 {
     /*
+
+
     TODO:
-    Implement a saving system such that the bot can go offline and online again, while having information saved.
-    Implement the other types of challenges (especially the manual grading system)
-    Implement the actual event (time, unlocks, teams, points, etc)
-    Other stuff?
+    Add the !startEvent command! (This is responsible for a decent amount of stuff)
+
+    Other stuff? (help command lol)
+    Optional: Disallow modification of challenges during an event running (not like that would happen anyways but just to be safe...)
+    Another note: NOTHING (but the JDA) related to the discord bot should be stored in global variables. EVER... Store IDS and IDS only. This is to ensure compatibility when saving to files.
+
+    TODO: if there is time, improve the error handling code organization (better errortrapping and actually having throw clauses on methods!)
+
      */
     public static void main(String[] args) throws LoginException
     {
-        JDA jda = JDABuilder.createDefault("NzkwNzkxMjQ4NzEzNjEzMzIy.X-FvvQ.w5DOwIQW7sep71eEc2IUqi_1iEc")
+        Helper.jda = JDABuilder.createDefault("NzkwNzkxMjQ4NzEzNjEzMzIy.X-FvvQ.w5DOwIQW7sep71eEc2IUqi_1iEc")
             .setChunkingFilter(ChunkingFilter.ALL)
             .setMemberCachePolicy(MemberCachePolicy.ALL)
             .enableIntents(GatewayIntent.GUILD_MEMBERS)
             .setActivity(Activity.playing("Prefix: " + Helper.DEFAULT_PREFIX))
             .build();
-        jda.addEventListener(new HelpCommand(),
-            new MessageCommand(), new ChallengeCommand(),
-            new InitChallengeCommand(), new CreateChallengeCommand(),
-            new RemoveChallengeCommand(), new SubmitCommand(), new LabyrinthStructureCommand());
+        Helper.jda.addEventListener(new HelpCommand(),
+            new ChallengeCommand(), new InitChallengeCommand(), new CreateChallengeCommand(),
+            new RemoveChallengeCommand(), new SubmitCommand(),
+            new SetAdminChannelCommand(), new GradeCommand(),
+            new CreateTeamCommand());
     }
 }
