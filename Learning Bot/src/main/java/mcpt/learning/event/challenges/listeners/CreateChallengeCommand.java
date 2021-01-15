@@ -14,7 +14,7 @@ public class CreateChallengeCommand extends CommandListener
     public CreateChallengeCommand()
     {
         super("CreateChallenge",
-              "createchallenge [challengeName] [challengeType | MULTIPLE_CHOICE, SHORT_ANSWER, TRUE_FALSE, MANUAL_GRADE]");
+              "createchallenge [challengeName] [challengeType | MULTIPLE_CHOICE, MANUAL_GRADE]");
     }
 
     @Override

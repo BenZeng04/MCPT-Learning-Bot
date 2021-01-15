@@ -12,6 +12,7 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Set;
 
 public class SubmitCommand extends CommandListener
@@ -26,14 +27,61 @@ public class SubmitCommand extends CommandListener
     @Override
     public void onCommandRun(String args, GuildMessageReceivedEvent event)
     {
+        LabyrinthEvent labyrinthEvent = (LabyrinthEvent) Helper.getMCPTEvent(event);
+        LabyrinthTeam team = labyrinthEvent.getTeamFromUser(event.getMember().getId());
+
+        // TODO: THE FOLLOWING IS TEMPORARY CODE FOR PRACTICE -> CODE SHOULD BE MIGRATED POST-EVENT
+
+        if(labyrinthEvent.getCurrent() != null && !labyrinthEvent.hasStarted())
+        {
+            TextChannel channel = event.getChannel();
+            EmbedBuilder embed = new EmbedBuilder();
+            embed.setTitle("MCPT Learning Bot | Submit");
+            embed.setColor(new Color(0x3B6EFF));
+            embed.setThumbnail("https://avatars0.githubusercontent.com/u/18370622?s=200&v=4");
+
+            try
+            {
+                Challenge challenge = labyrinthEvent.getCurrent();
+                String UUID = event.getAuthor().getId();
+                if(labyrinthEvent.getUserAttempted().get(UUID) != null)
+                    embed.setDescription("ERROR: Already submitted! Try again next session.");
+                else
+                {
+                    boolean correct = challenge.getGrader().grade(args.trim());
+                    labyrinthEvent.getUserAttempted().put(UUID, true);
+                    if(correct)
+                    {
+                        final String[] PLACEMENT_EMOJI = {":first_place:", ":second_place:", ":third_place:", ":thumbsup:"};
+                        int placement = labyrinthEvent.getSolveCount(), pointsGiven = placement == 0? 1: 0;
+                        String emoji = PLACEMENT_EMOJI[Math.min(PLACEMENT_EMOJI.length - 1, placement)];
+                        embed.setDescription(emoji + " " + event.getMember()
+                            .getEffectiveName() + " was the **#" + (placement + 1) + " person** to finish! :trophy:\n" + ((placement == 0)? "They gain **" + pointsGiven + " points**.\n": ""));
+                        labyrinthEvent.setSolveCount(placement + 1);
+
+                        HashMap<String, Integer> userScores = labyrinthEvent.getUserScore();
+                        int oldScore = userScores.get(UUID) == null? 0: userScores.get(UUID);
+                        userScores.put(UUID, oldScore + pointsGiven);
+                    }
+                    else
+                        embed.setDescription("Incorrect response, " + event.getMember().getEffectiveName() + ".");
+                }
+            }
+            catch(Exception e)
+            {
+                embed.setDescription("Invalid syntax or response!");
+            }
+            channel.sendMessage(embed.build()).queue();
+            return;
+        }
+        // TEMP CODE END
+
         TextChannel channel = event.getChannel();
         EmbedBuilder embed = new EmbedBuilder();
         embed.setTitle("MCPT Learning Bot | Submit");
         embed.setColor(new Color(0x3B6EFF));
         embed.setThumbnail("https://avatars0.githubusercontent.com/u/18370622?s=200&v=4");
 
-        LabyrinthEvent labyrinthEvent = (LabyrinthEvent) Helper.getMCPTEvent(event);
-        LabyrinthTeam team = labyrinthEvent.getTeamFromUser(event.getMember().getId());
 
         String[] tokens = args.split(" ");
         String challengeName = tokens[0];
@@ -206,14 +254,14 @@ public class SubmitCommand extends CommandListener
         Set<String> unlockedChallenges = labyrinthEvent.getUnlocks(challenge.ID);
 
         StringBuilder completionPrompt = new StringBuilder(
-            ":thumbsup: Successfully completed challenge " + challenge.ID + ".\nYou gain **" + pointReward + " points** and **" + timeReward + " bonus minutes of time** for completing this challenge.");
+            ":thumbsup: Successfully completed challenge " + challenge.ID + ".\nYou gain **" + pointReward + " points** and **" + timeReward + " bonus minutes of time** for completing this challenge.\n\n");
 
         LabyrinthTeam team = labyrinthEvent.getTeam(submissionEvent.getTeamID());
 
         boolean firstToComplete = labyrinthEvent.firstCompletion(challenge);
 
         if(team != null && firstToComplete)
-            completionPrompt.append(":trophy: **You were the first team to complete challenge " + challenge.ID + "!\nYou gain " + firstCompletionBonus + " bonus points.");
+            completionPrompt.append(":trophy: **You were the first team to complete challenge " + challenge.ID + "!**\nYou gain " + firstCompletionBonus + " bonus points.");
 
         if(unlockedChallenges.size() != 0)
         {
@@ -239,7 +287,7 @@ public class SubmitCommand extends CommandListener
                 for(TextChannel textChannel: labyrinthEvent
                         .getEventChannels(submissionEvent.getParentEvent()))
                 {
-                    if(textChannel.getId().equalsIgnoreCase(team.NAME)) // text channel name will always equal team name
+                    if(!textChannel.getName().equalsIgnoreCase(team.NAME)) // text channel name will always equal team name
                     {
                         EmbedBuilder message = new EmbedBuilder();
                         message.setTitle(team.NAME + " was the first team to complete challenge " + challenge.ID + "!");

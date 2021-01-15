@@ -11,6 +11,7 @@ import net.dv8tion.jda.api.utils.MemberCachePolicy;
 
 import javax.security.auth.login.LoginException;
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -26,7 +27,7 @@ public class Main
      */
     public static void main(String[] args) throws LoginException, IOException
     {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new FileReader("token.txt"));
         Helper.jda = JDABuilder.createDefault(br.readLine()) // Modified the bot token, don't even try to look through commit logs.
             .setChunkingFilter(ChunkingFilter.ALL)
             .setMemberCachePolicy(MemberCachePolicy.ALL)
@@ -39,6 +40,6 @@ public class Main
                                     new ChallengeListCommand(), new TeamInfoCommand(), new RemoveTeamCommand(),
                                     new SetMainChallengeCommand(), new SetLabyrinthImageCommand(), new LabyrinthCommand(),
                                     new SetFinalSubmissionCommand(), new StartEventCommand(), new PendingSubmissionListCommand(),
-                                    new SignUpCommand(), new LeaderboardCommand());
+                                    new SignUpCommand(), new LeaderboardCommand(), new PracticeCommand());
     }
 }

@@ -21,10 +21,19 @@ public class ChallengeFactory
                 ret.setSubmissionFormat("submit " + ID + " [Option Number]");
                 ret.addParameters(choices, answerID);
                 ret.setGrader(ans -> {
-                    int choice = Integer.parseInt(ans.trim());
-                    if(choice < 0 || choice > choices.getValues().size())
-                        throw new IllegalArgumentException();
-                    return choice == answerID.getValue();
+                    try
+                    {
+                        int choice = Integer.parseInt(ans.trim());
+                        if(choice < 0 || choice > choices.getValues().size())
+                            throw new IllegalArgumentException();
+                        return choice == answerID.getValue(); // Index-based choice
+                    }
+                    catch(NumberFormatException ne)
+                    {
+                        if(ans.trim().length() == 0) // check for basic empty clauses
+                            throw new IllegalArgumentException();
+                        return ans.trim().equalsIgnoreCase(choices.getValues().get(answerID.getValue())); // Value-based choice
+                    }
                 });
                 ret.setPrompt(() -> {
                     StringBuilder optionPrompt = new StringBuilder();

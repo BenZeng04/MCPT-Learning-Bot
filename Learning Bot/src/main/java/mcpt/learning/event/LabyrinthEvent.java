@@ -5,12 +5,10 @@ import mcpt.learning.event.challenges.Challenge;
 import mcpt.learning.event.challenges.ChallengeFactory;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
-import net.dv8tion.jda.api.entities.Category;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
-import org.w3c.dom.Text;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -18,7 +16,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.*;
-import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @author yeahbennou
@@ -55,6 +53,76 @@ import java.util.List;
 
 public class LabyrinthEvent implements TeamEvent
 {
+    // TODO: THE FOLLOWING IS TEMPORARY CODE FOR PRACTICE -> CODE SHOULD BE MIGRATED POST-EVENT
+    private ArrayList<Challenge> practice = new ArrayList<>(); // saved
+    private Challenge current;
+    private int solveCount;
+    private long practiceStartTime;
+    private HashMap<String, Integer> userScore = new HashMap<>(); // saved
+    private HashMap<String, Boolean> userAttempted = new HashMap<>();
+
+    public long getPracticeStartTime()
+    {
+        return practiceStartTime;
+    }
+
+    public void setPracticeStartTime(long practiceStartTime)
+    {
+        this.practiceStartTime = practiceStartTime;
+    }
+
+    public HashMap<String, Boolean> getUserAttempted()
+    {
+        return userAttempted;
+    }
+
+    public void setUserAttempted(HashMap<String, Boolean> userAttempted)
+    {
+        this.userAttempted = userAttempted;
+    }
+
+    public int getSolveCount()
+    {
+        return solveCount;
+    }
+
+    public void setSolveCount(int solveCount)
+    {
+        this.solveCount = solveCount;
+    }
+
+    public ArrayList<Challenge> getPractice()
+    {
+        return practice;
+    }
+
+    public void setPractice(ArrayList<Challenge> practice)
+    {
+        this.practice = practice;
+    }
+
+    public Challenge getCurrent()
+    {
+        return current;
+    }
+
+    public void setCurrent(Challenge current)
+    {
+        this.current = current;
+    }
+
+    public HashMap<String, Integer> getUserScore()
+    {
+        return userScore;
+    }
+
+    public void setUserScore(HashMap<String, Integer> userScore)
+    {
+        this.userScore = userScore;
+    }
+
+    // TEMP CODE END
+
     private final static long DEFAULT_EVENT_DURATION = Helper.minutesToMillis(20); // default 20 minutes
     private final static int DEFAULT_POINT_BONUS = 5; // default 5 points per question
     private final static int DEFAULT_FIRST_COMPLETION_BONUS = 3; // 3 bonus points for being the first team to finish a problem
@@ -246,9 +314,45 @@ public class LabyrinthEvent implements TeamEvent
             mainChallenge = desc.toString();
             imageURL = br.readLine();
             teamCategory = br.readLine();
+            teamChannels = new ArrayList<>();
             for(String str: Arrays.asList(br.readLine().split(" ")))
                 if(str.trim().length() != 0)
                     teamChannels.add(str);
+
+            // TODO remove (temporary practice code)
+            br = new BufferedReader(new FileReader(eventGuildID + "practice.txt"));
+            int practiceSize = Integer.parseInt(br.readLine());
+            practice = new ArrayList<>();
+            for(int i = 0; i < practiceSize; i++)
+            {
+                String[] practiceTokens = br.readLine().split(" ");
+                Challenge challenge = ChallengeFactory.createChallenge(practiceTokens[0], practiceTokens[1]);
+
+                int paramCount = Integer.parseInt(practiceTokens[2]);
+                String[] params = new String[paramCount];
+                for(int j = 0; j < paramCount; j++)
+                {
+                    String buf = br.readLine();
+                    String[] args = buf.split(" ");
+                    StringBuilder sb = new StringBuilder(args[0]).append(' ');
+                    for(int k = 0; k < Integer.parseInt(args[1]); k++)
+                    {
+                        sb.append(br.readLine());
+                        if(k != Integer.parseInt(args[1]) - 1)
+                            sb.append('\n');
+                    }
+                    params[j] = sb.toString();
+                }
+                challenge.parseFromFile(params);
+                practice.add(challenge);
+            }
+            userScore.clear();
+            int userScoreSize = Integer.parseInt(br.readLine());
+            for(int i = 0; i < userScoreSize; i++)
+            {
+                String[] score = br.readLine().split(" ");
+                userScore.put(score[0], Integer.parseInt(score[1]));
+            }
         }
         catch(Exception e)
         {
@@ -292,6 +396,16 @@ public class LabyrinthEvent implements TeamEvent
             }
             pw.println();
             pw.close();
+
+            // TODO remove (temporary practice code)
+            pw = new PrintWriter(new FileWriter(eventGuildID + "practice.txt"));
+            pw.println(practice.size());
+            for(Challenge challenge: practice)
+                pw.println(challenge);
+            pw.println(userScore.size());
+            for(Map.Entry<String, Integer> userEntry: userScore.entrySet())
+                pw.println(userEntry.getKey() + " " + userEntry.getValue());
+            pw.close();
         }
         catch(Exception e)
         {
@@ -330,6 +444,7 @@ public class LabyrinthEvent implements TeamEvent
         // Channel creation / prep
         guild.createCategory(TITLE).queue(category -> {
             teamCategory = category.getId();
+            save(event.getGuild().getId()); // saving
             category.createPermissionOverride(guild.getPublicRole()).deny(Permission.VIEW_CHANNEL).queue();
             for(Role role: guild.getRoles())
                 if(role.getName().equalsIgnoreCase("exec"))
@@ -339,6 +454,7 @@ public class LabyrinthEvent implements TeamEvent
             {
                 category.createTextChannel(team.NAME).queue(textChannel -> {
                     teamChannels.add(textChannel.getId());
+                    save(event.getGuild().getId()); // saving
                     for(String teamMember: team.teamMemberIDs)
                         if(guild.getMemberById(teamMember) != null)
                             textChannel.putPermissionOverride(

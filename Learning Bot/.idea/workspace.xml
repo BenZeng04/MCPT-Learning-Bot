@@ -2,14 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d78cc2ff-89e8-4fb5-b363-b2bbc2d41aac" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/790786181142806528PATHWAYSchallenges.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/790786181142806528PATHWAYSlabyrinth.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/790786181142806528PATHWAYSteams.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/790786181142806528practice.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/listeners/PracticeCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/token.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/790786181142806528PATHWAYSchallenges.txt" beforeDir="false" afterPath="$PROJECT_DIR$/790786181142806528PATHWAYSchallenges.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/790786181142806528PATHWAYSlabyrinth.txt" beforeDir="false" afterPath="$PROJECT_DIR$/790786181142806528PATHWAYSlabyrinth.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/790786181142806528PATHWAYSteams.txt" beforeDir="false" afterPath="$PROJECT_DIR$/790786181142806528PATHWAYSteams.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/core/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/core/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/LabyrinthEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/LabyrinthEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/LabyrinthTeam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/LabyrinthTeam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/ChallengeFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/ChallengeFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/listeners/CreateChallengeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/listeners/CreateChallengeCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/listeners/SubmitCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/listeners/SubmitCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/listeners/LeaderboardCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/listeners/LeaderboardCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/core/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/core/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/LabyrinthEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/LabyrinthEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/LabyrinthTeam.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/LabyrinthTeam.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/ChallengeFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/ChallengeFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/listeners/CreateChallengeCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/listeners/CreateChallengeCommand.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/listeners/SubmitCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/listeners/SubmitCommand.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/listeners/LeaderboardCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/listeners/LeaderboardCommand.class" afterDir="false" />
     </list>
@@ -63,6 +73,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -99,18 +110,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="core.Main" />
       <module name="Learning Bot" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Main" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -159,7 +165,7 @@
       <workItem from="1610652312224" duration="11323000" />
       <workItem from="1610676724826" duration="4583000" />
       <workItem from="1610722572691" duration="3004000" />
-      <workItem from="1610730143376" duration="1711000" />
+      <workItem from="1610730143376" duration="16436000" />
     </task>
     <servers />
   </component>
@@ -174,14 +180,14 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="233" y="0" key="#Project_Structure/0.0.1280.680@0.0.1280.680" timestamp="1609190248862" />
-    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1609543470907">
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1610746469357">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1609543470907" />
-    <state x="446" y="49" key="#com.intellij.ide.util.MemberChooser" timestamp="1610723833628">
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1610746469357" />
+    <state x="446" y="49" key="#com.intellij.ide.util.MemberChooser" timestamp="1610747882852">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="446" y="49" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1610723833628" />
+    <state x="446" y="49" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1610747882852" />
     <state x="242" y="266" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1609561601601">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -206,22 +212,26 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="93" y="93" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1610338815720" />
-    <state width="1237" height="2" key="GridCell.Tab.0.bottom" timestamp="1610731603027">
+    <state x="285" y="95" key="FileChooserDialogImpl" timestamp="1610746467017">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="2" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1610731603027" />
-    <state width="1237" height="2" key="GridCell.Tab.0.center" timestamp="1610731603027">
+    <state x="285" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1610746467017" />
+    <state width="1237" height="140" key="GridCell.Tab.0.bottom" timestamp="1610751044604">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="2" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1610731603027" />
-    <state width="1237" height="2" key="GridCell.Tab.0.left" timestamp="1610731603027">
+    <state width="1237" height="140" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1610751044604" />
+    <state width="1237" height="140" key="GridCell.Tab.0.center" timestamp="1610751044604">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="2" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1610731603027" />
-    <state width="1237" height="2" key="GridCell.Tab.0.right" timestamp="1610731603027">
+    <state width="1237" height="140" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1610751044604" />
+    <state width="1237" height="140" key="GridCell.Tab.0.left" timestamp="1610751044604">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="2" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1610731603027" />
+    <state width="1237" height="140" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1610751044604" />
+    <state width="1237" height="140" key="GridCell.Tab.0.right" timestamp="1610751044604">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="140" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1610751044604" />
     <state width="1237" height="204" key="GridCell.Tab.1.bottom" timestamp="1609981109108">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -266,14 +276,14 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="107" key="extract.method.dialog/0.0.1280.680@0.0.1280.680" timestamp="1610339778221" />
-    <state x="335" y="71" width="739" height="606" key="find.popup" timestamp="1610722744546">
+    <state x="335" y="71" width="739" height="606" key="find.popup" timestamp="1610751321742">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="335" y="71" width="739" height="606" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1610722744546" />
-    <state x="91" y="0" key="new project wizard" timestamp="1610684829158">
+    <state x="335" y="71" width="739" height="606" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1610751321742" />
+    <state x="91" y="0" key="new project wizard" timestamp="1610746446669">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="91" y="0" key="new project wizard/0.0.1280.680@0.0.1280.680" timestamp="1610684829158" />
+    <state x="91" y="0" key="new project wizard/0.0.1280.680@0.0.1280.680" timestamp="1610746446669" />
     <state x="383" y="0" key="refactoring.ChangeSignatureDialog" timestamp="1610417833342">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -282,10 +292,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="297" y="151" width="672" height="677" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1610579738103" />
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1610584449848">
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1610747138445">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1610584449848" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1610747138445" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>
