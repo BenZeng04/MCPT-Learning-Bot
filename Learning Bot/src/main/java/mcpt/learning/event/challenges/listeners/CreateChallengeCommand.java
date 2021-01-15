@@ -3,12 +3,7 @@ package mcpt.learning.event.challenges.listeners;
 import mcpt.learning.core.CommandListener;
 import mcpt.learning.core.Helper;
 import mcpt.learning.event.LabyrinthEvent;
-import mcpt.learning.event.LabyrinthTeam;
-import mcpt.learning.event.challenges.Challenge;
-import mcpt.learning.event.challenges.ChallengeFactory;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.Permission;
-import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
@@ -18,13 +13,14 @@ public class CreateChallengeCommand extends CommandListener
 {
     public CreateChallengeCommand()
     {
-        super("CreateChallenge", "createchallenge [challengeName] [challengeType | MULTIPLE_CHOICE, SHORT_ANSWER, TRUE_FALSE, MANUAL_GRADE]");
+        super("CreateChallenge",
+              "createchallenge [challengeName] [challengeType | MULTIPLE_CHOICE, SHORT_ANSWER, TRUE_FALSE, MANUAL_GRADE]");
     }
 
     @Override
     public boolean hasPermissions(GuildMessageReceivedEvent event)
     {
-        return event.getMember().getPermissions().contains(Permission.ADMINISTRATOR);
+        return Helper.isExec(event);
     }
 
     @Override
@@ -44,25 +40,19 @@ public class CreateChallengeCommand extends CommandListener
 
         if(labyrinthEvent.getChallenge(challengeName) != null)
         {
-            embed.setDescription("ERROR: This challenge already exists under the current event." +
-                "\nTo remove this challenge, use the !removeChallenge command." +
-                "\nTO modify this challenge, use the !initChallenge command.");
+            embed.setDescription(
+                "ERROR: This challenge already exists under the current event." + "\nTo remove this challenge, use the !removeChallenge command." + "\nTO modify this challenge, use the !initChallenge command.");
         }
         else
         {
             try
             {
-                Challenge challenge = ChallengeFactory.createChallenge(challengeName, challengeType);
-                if(challenge == null) embed.setDescription("Unsupported challenge type: " + challengeType);
-                else
-                {
-                    labyrinthEvent.setChallenge(challengeName, challenge);
-                    embed.setDescription("Successfully added challenge " + challengeName + " of type " + tokens[1] + "!");
-                }
+                labyrinthEvent.addChallenge(challengeName, challengeType);
+                embed.setDescription("Successfully added challenge " + challengeName + " of type " + tokens[1] + "!");
             }
             catch(Exception e)
             {
-                embed.setDescription(e.toString());
+                embed.setDescription("Unsupported challenge type: " + challengeType);
             }
         }
         channel.sendMessage(embed.build()).queue();

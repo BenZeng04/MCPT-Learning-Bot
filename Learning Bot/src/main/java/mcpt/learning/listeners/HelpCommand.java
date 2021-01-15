@@ -1,6 +1,6 @@
 package mcpt.learning.listeners;
-import mcpt.learning.core.CommandListener;
 
+import mcpt.learning.core.CommandListener;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -32,8 +32,10 @@ public class HelpCommand extends CommandListener
         else
         {
             CommandListener infoCommand = CommandListener.map.get(args.toLowerCase());
-            if(infoCommand != null) infoCommand.helpMessage(event);
-            else throw new IllegalArgumentException();
+            if(infoCommand != null)
+                infoCommand.helpMessage(event);
+            else
+                throw new IllegalArgumentException();
         }
     }
 }

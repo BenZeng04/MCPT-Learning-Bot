@@ -1,6 +1,5 @@
 package mcpt.learning.event.challenges;
 
-import mcpt.learning.event.challenges.interfaces.Prompt;
 import mcpt.learning.event.challenges.interfaces.attributes.SingleIntegerParameter;
 import mcpt.learning.event.challenges.interfaces.attributes.StringParameterList;
 
@@ -15,12 +14,18 @@ public class ChallengeFactory
         {
             case "MULTIPLE_CHOICE":
             {
-                StringParameterList choices = new StringParameterList("CHOICES", "CHOICES [choice1,choice2,choice3...]");
+                StringParameterList choices = new StringParameterList("CHOICES",
+                                                                      "CHOICES [choice1,choice2,choice3...]");
                 SingleIntegerParameter answerID = new SingleIntegerParameter("ANSWER", "ANSWER [index (one-indexed)]");
 
                 ret.setSubmissionFormat("submit " + ID + " [Option Number]");
                 ret.addParameters(choices, answerID);
-                ret.setGrader(ans -> Integer.parseInt(ans.trim()) == answerID.getValue());
+                ret.setGrader(ans -> {
+                    int choice = Integer.parseInt(ans.trim());
+                    if(choice < 0 || choice > choices.getValues().size())
+                        throw new IllegalArgumentException();
+                    return choice == answerID.getValue();
+                });
                 ret.setPrompt(() -> {
                     StringBuilder optionPrompt = new StringBuilder();
                     ArrayList<String> options = choices.getValues();

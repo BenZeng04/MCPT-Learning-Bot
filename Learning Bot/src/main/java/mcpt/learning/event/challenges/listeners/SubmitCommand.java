@@ -3,17 +3,16 @@ package mcpt.learning.event.challenges.listeners;
 import mcpt.learning.core.CommandListener;
 import mcpt.learning.core.Helper;
 import mcpt.learning.event.ChallengeSubmissionEvent;
-import mcpt.learning.event.LabyrinthTeam;
 import mcpt.learning.event.LabyrinthEvent;
+import mcpt.learning.event.LabyrinthTeam;
 import mcpt.learning.event.challenges.Challenge;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.Permission;
-import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Set;
 
 public class SubmitCommand extends CommandListener
 {
@@ -28,50 +27,51 @@ public class SubmitCommand extends CommandListener
     public void onCommandRun(String args, GuildMessageReceivedEvent event)
     {
         LabyrinthEvent labyrinthEvent = (LabyrinthEvent) Helper.getMCPTEvent(event);
-        Member user = event.getMember();
-        LabyrinthTeam team = (LabyrinthTeam) labyrinthEvent.getTeamFromUser(event.getMember().getId());
+        LabyrinthTeam team = labyrinthEvent.getTeamFromUser(event.getMember().getId());
 
         String[] tokens = args.split(" ");
         String challengeName = tokens[0];
         Challenge challenge = labyrinthEvent.getChallenge(challengeName);
 
-        if(!user.getPermissions().contains(Permission.ADMINISTRATOR))
+        if(!Helper.isExec(event))
         {
             // Default errors for non-admins
             if(team == null)
             {
                 TextChannel channel = event.getChannel();
                 EmbedBuilder embed = new EmbedBuilder();
-                embed.setTitle("MCPT Learning Bot | SubmitCommand");
+                embed.setTitle("MCPT Learning Bot | Submit");
                 embed.setColor(new Color(0x3B6EFF));
                 embed.setThumbnail("https://avatars0.githubusercontent.com/u/18370622?s=200&v=4");
                 embed.setDescription("ERROR: You're not in a team!");
                 channel.sendMessage(embed.build()).queue();
                 return;
             }
-            if(!team.canSubmit(challenge))
+            if(!team.unlocked(challenge) || team.submissionTimeOver() || !labyrinthEvent.hasStarted() || team.attempted(
+                challenge))
             {
                 TextChannel channel = event.getChannel();
                 EmbedBuilder embed = new EmbedBuilder();
-                embed.setTitle("MCPT Learning Bot | SubmitCommand");
+                embed.setTitle("MCPT Learning Bot | Submit");
                 embed.setColor(new Color(0x3B6EFF));
                 embed.setThumbnail("https://avatars0.githubusercontent.com/u/18370622?s=200&v=4");
-                embed.setDescription("ERROR: Your submission could not be delivered because the event hasn't started yet, your time to submit to the event has passed, or you have already submitted to this challenge.");
+                embed.setDescription(
+                    "ERROR: Your submission could not be delivered because your window to submit to the event hasn't started or is over, you have not unlocked this challenge yet, or you have already submitted to this challenge.");
                 channel.sendMessage(embed.build()).queue();
                 return;
             }
         }
 
-        assert team != null || user.getPermissions().contains(Permission.ADMINISTRATOR);
-
         try
         {
-            if(tokens.length == 1) throw new IllegalArgumentException(); // Caught immediately - this is to prevent people from doing "!submit [challengeName]" with no arguments and receiving a wrong answer on string-comparison based graders.
+            if(tokens.length == 1)
+                throw new IllegalArgumentException(); // Caught immediately - this is to prevent people from doing "!submit [challengeName]" with no arguments and receiving a wrong answer on string-comparison based graders.
             StringBuilder sb = new StringBuilder();
             for(int i = 1; i < tokens.length; i++)
             {
                 sb.append(tokens[i]);
-                if(i != tokens.length - 1) sb.append(' ');
+                if(i != tokens.length - 1)
+                    sb.append(' ');
             }
             String answer = sb.toString();
             String teamName = team == null? null: team.NAME;
@@ -80,8 +80,10 @@ public class SubmitCommand extends CommandListener
             if(challenge.getGrader() != null)
             {
                 boolean correct = challenge.getGrader().grade(answer.trim());
-                if(correct) challengeSuccessEvent(submissionEvent); // Correct
-                else challengeFailureEvent(submissionEvent); // Incorrect
+                if(correct)
+                    challengeSuccessEvent(submissionEvent); // Correct
+                else
+                    challengeFailureEvent(submissionEvent); // Incorrect
             }
             else
             {
@@ -95,11 +97,12 @@ public class SubmitCommand extends CommandListener
                 TextChannel adminChannel;
                 try
                 {
-                   adminChannel = labyrinthEvent.getAdminChannel(event);
+                    adminChannel = labyrinthEvent.getAdminChannel(event);
                 }
                 catch(Exception e)
                 {
-                    embed.setDescription("Admin channel not set up or incorrectly set up! Please contact an administrator.");
+                    embed.setDescription(
+                        "Admin channel not set up or incorrectly set up! Please contact an administrator.");
                     channel.sendMessage(embed.build()).queue();
                     return;
                 }
@@ -118,7 +121,8 @@ public class SubmitCommand extends CommandListener
 
                 EmbedBuilder adminEmbed = new EmbedBuilder();
                 adminEmbed.setTitle("MCPT Learning Bot | Submission " + manualGradeID);
-                adminEmbed.setDescription("**Submission Link:** " + event.getMessage().getJumpUrl() + "\n\nGrade this challenge using !grade " + manualGradeID);
+                adminEmbed.setDescription("**Submission Link:** " + event.getMessage()
+                    .getJumpUrl() + "\n\nGrade this challenge using !grade " + manualGradeID);
                 adminChannel.sendMessage(adminEmbed.build()).queue();
                 channel.sendMessage(embed.build()).queue();
             }
@@ -130,11 +134,13 @@ public class SubmitCommand extends CommandListener
             embed.setTitle("MCPT Learning Bot | Challenge " + challengeName);
             embed.setColor(new Color(0x3B6EFF));
             embed.setThumbnail("https://avatars0.githubusercontent.com/u/18370622?s=200&v=4");
-            embed.setDescription("ERROR IN GRADING: Invalid Challenge Name or Syntax! Please try submitting again.\nIf this error persists, please contact an administrator for more information.");
+            embed.setDescription(
+                "ERROR IN GRADING: Invalid Challenge Name or Syntax! Please try submitting again.\nIf this error persists, please contact an administrator for more information.");
             channel.sendMessage(embed.build()).queue();
             e.printStackTrace();
         }
     }
+
     // TODO: Improve / merge the fail and success methods
     protected static void challengeFailureEvent(ChallengeSubmissionEvent submissionEvent)
     {
@@ -149,29 +155,34 @@ public class SubmitCommand extends CommandListener
 
         if(challenge.getTimeReward().getValue() == null)
         {
-            embed.setDescription("ERROR: This challenge's rewards may have not been fully initialized.\nPlease contact an administrator for more information.");
+            embed.setDescription(
+                "ERROR: This challenge's rewards may have not been fully initialized.\nPlease contact an administrator for more information.");
             channel.sendMessage(embed.build()).queue();
             return;
         }
 
-        ArrayList<String> unlockedChallenges = labyrinthEvent.getUnlocks(challenge.ID);
+        Set<String> unlockedChallenges = labyrinthEvent.getUnlocks(challenge.ID);
 
         StringBuilder completionPrompt = new StringBuilder("Incorrect Response D:\nGood luck next time...");
 
         if(unlockedChallenges.size() != 0)
         {
             completionPrompt.append("\n**NEW Unlocked Challenges:**");
-            for(int i = 0; i < unlockedChallenges.size(); i++)
+            int i = 0;
+            for(String unlock: unlockedChallenges)
             {
-                String unlock = unlockedChallenges.get(i);
                 completionPrompt.append(unlock);
-                if(i != unlockedChallenges.size() - 1) completionPrompt.append(",");
+                if(i != unlockedChallenges.size() - 1)
+                    completionPrompt.append(",");
+                i++;
             }
-            completionPrompt.append("\nTo view all of your challenges you can submit to, use the !unlockedChallenges command.");
+            completionPrompt.append(
+                "\nTo view all of your challenges you can submit to, use the !unlockedChallenges command.");
         }
 
-        LabyrinthTeam team = (LabyrinthTeam) labyrinthEvent.getTeam(submissionEvent.getTeamID());
-        if(team != null) team.onChallengeFailure(challenge);
+        LabyrinthTeam team = labyrinthEvent.getTeam(submissionEvent.getTeamID());
+        if(team != null)
+            team.onChallengeFailure(challenge);
 
         embed.setDescription(completionPrompt.toString());
         channel.sendMessage(embed.build()).queue();
@@ -190,34 +201,62 @@ public class SubmitCommand extends CommandListener
 
         if(challenge.getTimeReward().getValue() == null)
         {
-            embed.setDescription("ERROR: This challenge's rewards may have not been fully initialized.\nPlease contact an administrator for more information.");
+            embed.setDescription(
+                "ERROR: This challenge's rewards may have not been fully initialized.\nPlease contact an administrator for more information.");
             channel.sendMessage(embed.build()).queue();
             return;
         }
 
         int timeReward = challenge.getTimeReward().getValue();
         int pointReward = labyrinthEvent.getChallengePointBonus();
+        int firstCompletionBonus = labyrinthEvent.getFirstCompletionBonus();
         ArrayList<String> URLBonusRewards = challenge.getBonusRewards().getValues();
-        ArrayList<String> unlockedChallenges = labyrinthEvent.getUnlocks(challenge.ID);
+        Set<String> unlockedChallenges = labyrinthEvent.getUnlocks(challenge.ID);
 
-        StringBuilder completionPrompt = new StringBuilder(":thumbsup: Successfully completed challenge " + challenge.ID +
-            ".\nYou gain **" + pointReward + " points** and **" + timeReward +
-            " bonus minutes of time** for completing this challenge.");
+        StringBuilder completionPrompt = new StringBuilder(
+            ":thumbsup: Successfully completed challenge " + challenge.ID + ".\nYou gain **" + pointReward + " points** and **" + timeReward + " bonus minutes of time** for completing this challenge.");
+
+        LabyrinthTeam team = labyrinthEvent.getTeam(submissionEvent.getTeamID());
+
+        boolean firstToComplete = labyrinthEvent.firstCompletion(challenge);
+
+        if(team != null && firstToComplete)
+            completionPrompt.append(":trophy: **You were the first team to complete challenge " + challenge.ID + "!\nYou gain " + firstCompletionBonus + " bonus points.");
 
         if(unlockedChallenges.size() != 0)
         {
-            completionPrompt.append("\n**NEW Unlocked Challenges:**");
-            for(int i = 0; i < unlockedChallenges.size(); i++)
+            completionPrompt.append("\n**NEW Unlocked Challenges: **");
+            int i = 0;
+            for(String unlock: unlockedChallenges)
             {
-                String unlock = unlockedChallenges.get(i);
                 completionPrompt.append(unlock);
-                if(i != unlockedChallenges.size() - 1) completionPrompt.append(",");
+                if(i != unlockedChallenges.size() - 1)
+                    completionPrompt.append(",");
+                i++;
             }
-            completionPrompt.append("\nTo view all of your challenges you can submit to, use the !unlockedChallenges command.");
+            completionPrompt.append(
+                "\nTo view all of your challenges you can submit to, use the !unlockedChallenges command.");
         }
 
-        LabyrinthTeam team = (LabyrinthTeam) labyrinthEvent.getTeam(submissionEvent.getTeamID());
-        if(team != null) team.onChallengeSuccess(challenge);
+        if(team != null)
+        {
+            team.onChallengeSuccess(challenge);
+
+            if(firstToComplete)
+            {
+                for(TextChannel textChannel: labyrinthEvent
+                        .getEventChannels(submissionEvent.getParentEvent()))
+                {
+                    if(textChannel.getId().equalsIgnoreCase(team.NAME)) // text channel name will always equal team name
+                    {
+                        EmbedBuilder message = new EmbedBuilder();
+                        message.setTitle(team.NAME + " was the first team to complete challenge " + challenge.ID + "!");
+                        message.setColor(new Color(0x3B6EFF));
+                        textChannel.sendMessage(message.build()).queue();
+                    }
+                }
+            }
+        }
 
         embed.setDescription(completionPrompt.toString());
         channel.sendMessage(embed.build()).queue();

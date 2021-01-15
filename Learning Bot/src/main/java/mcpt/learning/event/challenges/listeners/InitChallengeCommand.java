@@ -6,7 +6,6 @@ import mcpt.learning.event.LabyrinthEvent;
 import mcpt.learning.event.challenges.Challenge;
 import mcpt.learning.event.challenges.interfaces.Parameter;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
@@ -17,13 +16,14 @@ public class InitChallengeCommand extends CommandListener
 {
     public InitChallengeCommand()
     {
-        super("InitChallenge", "initchallenge [challengeName] [parameter] [args] OR initchallenge [challengeName] to view parameters.");
+        super("InitChallenge",
+              "initchallenge [challengeName] [parameter] [args] OR initchallenge [challengeName] to view parameters.");
     }
 
     @Override
     public boolean hasPermissions(GuildMessageReceivedEvent event)
     {
-        return event.getMember().getPermissions().contains(Permission.ADMINISTRATOR);
+        return Helper.isExec(event);
     }
 
     @Override
@@ -50,9 +50,11 @@ public class InitChallengeCommand extends CommandListener
             {
                 cnt++;
                 parameterList.append(entry.getValue().helpArgs());
-                if(cnt != challengeParameters.entrySet().size()) parameterList.append("\n\n");
+                if(cnt != challengeParameters.entrySet().size())
+                    parameterList.append("\n\n");
             }
-            embed.setDescription("**SYNTAX:** !initChallenge " + challengeName + " [Parameters]\n\n__Parameters:__\n" + parameterList);
+            embed.setDescription(
+                "**SYNTAX:** !initChallenge " + challengeName + " [Parameters]\n\n__Parameters:__\n" + parameterList);
             channel.sendMessage(embed.build()).queue();
         }
         else // Inputting parameters
@@ -65,19 +67,21 @@ public class InitChallengeCommand extends CommandListener
                 if(i != tokens.length - 1)
                     challengeArgs.append(" ");
             }
-            if(challenge.getParameter(parameterName) == null) throw new IllegalArgumentException("Invalid Parameter Name.");
+            if(challenge.getParameter(parameterName) == null)
+                throw new IllegalArgumentException("Invalid Parameter Name.");
             Parameter challengeParameter = challenge.getParameter(parameterName);
 
             try
             {
                 challengeParameter.init(challengeArgs.toString());
-                embed.setDescription("Successfully initialized parameter " + parameterName + " of challenge " + challengeName + " to " + challengeArgs
-                    .toString() + ".");
+                embed.setDescription(
+                    "Successfully initialized parameter " + parameterName + " of challenge " + challengeName + " to " + challengeArgs
+                        .toString() + ".");
             }
             catch(Exception e)
             {
-                embed.setDescription("**Arguments: **" + "!initChallenge " + challengeName + " " + challengeParameter
-                    .helpArgs());
+                embed.setDescription(
+                    "**Arguments: **" + "!initChallenge " + challengeName + " " + challengeParameter.helpArgs());
             }
             channel.sendMessage(embed.build()).queue();
         }

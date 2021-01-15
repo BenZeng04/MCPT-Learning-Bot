@@ -1,19 +1,19 @@
-package mcpt.learning.event.challenges.listeners;
+package mcpt.learning.event.listeners;
 
 import mcpt.learning.core.CommandListener;
 import mcpt.learning.core.Helper;
-import mcpt.learning.event.LabyrinthEvent;
+import mcpt.learning.event.MCPTEvent;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.awt.*;
 
-public class RemoveChallengeCommand extends CommandListener
+public class StartEventCommand extends CommandListener
 {
-    public RemoveChallengeCommand()
+    public StartEventCommand()
     {
-        super("RemoveChallenge", "removechallenge [challengeName]");
+        super("StartEvent", "startEvent (no arguments)");
     }
 
     @Override
@@ -25,16 +25,26 @@ public class RemoveChallengeCommand extends CommandListener
     @Override
     public void onCommandRun(String args, GuildMessageReceivedEvent event)
     {
-        LabyrinthEvent labyrinthEvent = (LabyrinthEvent) Helper.getMCPTEvent(event);
-
         TextChannel channel = event.getChannel();
-        labyrinthEvent.removeChallenge(args);
-
         EmbedBuilder embed = new EmbedBuilder();
-        embed.setTitle("MCPT Learning Bot | Challenge " + args);
+        embed.setTitle("MCPT Learning Bot | StartEvent");
         embed.setColor(new Color(0x3B6EFF));
         embed.setThumbnail("https://avatars0.githubusercontent.com/u/18370622?s=200&v=4");
-        embed.setDescription("Successfully removed challenge " + args + ".");
+        try
+        {
+            MCPTEvent mcptEvent = Helper.getMCPTEvent(event);
+            if(!mcptEvent.hasStarted())
+            {
+                mcptEvent.startEvent(event);
+                embed.setDescription("Starting event!");
+            }
+            else
+                embed.setDescription("ERROR: The event has already started!");
+        }
+        catch(Exception e)
+        {
+            embed.setDescription(e.toString());
+        }
         channel.sendMessage(embed.build()).queue();
     }
 }

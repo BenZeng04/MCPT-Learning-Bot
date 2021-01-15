@@ -2,8 +2,6 @@ package mcpt.learning.event.listeners;
 
 import mcpt.learning.core.CommandListener;
 import mcpt.learning.core.Helper;
-import mcpt.learning.event.LabyrinthTeam;
-import mcpt.learning.event.LabyrinthEvent;
 import mcpt.learning.event.TeamEvent;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
@@ -18,6 +16,13 @@ public class CreateTeamCommand extends CommandListener
     {
         super("CreateTeam", "createTeam [teamName] [teamMember1] [teamMember2]...");
     }
+
+    @Override
+    public boolean hasPermissions(GuildMessageReceivedEvent event)
+    {
+        return Helper.isExec(event);
+    }
+
     @Override
     public void onCommandRun(String args, GuildMessageReceivedEvent event)
     {
@@ -26,7 +31,7 @@ public class CreateTeamCommand extends CommandListener
         String teamName = tokens[0];
         TextChannel channel = event.getChannel();
         EmbedBuilder embed = new EmbedBuilder();
-        embed.setTitle("MCPT Learning Bot | SubmitCommand");
+        embed.setTitle("MCPT Learning Bot | CreateTeam");
         embed.setColor(new Color(0x3B6EFF));
         embed.setThumbnail("https://avatars0.githubusercontent.com/u/18370622?s=200&v=4");
         if(!Helper.isAlphanumeric(teamName))
@@ -41,12 +46,19 @@ public class CreateTeamCommand extends CommandListener
             channel.sendMessage(embed.build()).queue();
             return;
         }
+        if(teamEvent.getTeam(teamName) != null)
+        {
+            embed.setDescription(
+                "ERROR: Team already exists!\nYou can remove and recreate this team using the !removeTeam command.");
+            channel.sendMessage(embed.build()).queue();
+            return;
+        }
         String[] teamMembers = new String[tokens.length - 1];
         for(int i = 1; i < tokens.length; i++)
         {
             String memberID = tokens[i];
             if(memberID.charAt(0) == '<')
-                memberID = memberID.substring(2, memberID.length() - 1);
+                memberID = memberID.substring(3, memberID.length() - 1);
             Member member = event.getGuild().getMemberById(memberID);
             if(member == null)
             {
@@ -56,12 +68,15 @@ public class CreateTeamCommand extends CommandListener
             }
             if(teamEvent.getTeamFromUser(memberID) != null)
             {
-                embed.setDescription("ERROR: One of these users are already in a team!\nYou can view all existing teams and users in these teams using the !teamList command.");
+                embed.setDescription(
+                    "ERROR: One of these users are already in a team!\nYou can view all existing teams and users in these teams using the !teamList command.");
                 channel.sendMessage(embed.build()).queue();
                 return;
             }
             teamMembers[i - 1] = memberID;
         }
         teamEvent.addTeam(teamName, teamMembers);
+        embed.setDescription("Successfully created team " + teamName + "!");
+        channel.sendMessage(embed.build()).queue();
     }
 }

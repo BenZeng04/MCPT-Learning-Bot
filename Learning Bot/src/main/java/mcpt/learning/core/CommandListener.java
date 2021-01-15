@@ -22,7 +22,11 @@ public abstract class CommandListener extends ListenerAdapter
         map.put(COMMAND_NAME.toLowerCase(), this);
     }
 
-    public boolean hasPermissions(GuildMessageReceivedEvent event) { return true; }
+    public boolean hasPermissions(GuildMessageReceivedEvent event)
+    {
+        return true;
+    }
+
     public void helpMessage(GuildMessageReceivedEvent event)
     {
         TextChannel channel = event.getChannel();
@@ -32,12 +36,17 @@ public abstract class CommandListener extends ListenerAdapter
         embed.setDescription("**Arguments:** " + Helper.getPrefix(event) + DEFAULT_ARGUMENTS);
         channel.sendMessage(embed.build()).queue();
     }
+
     public abstract void onCommandRun(String args, GuildMessageReceivedEvent event);
+
     @Override
     public final void onGuildMessageReceived(GuildMessageReceivedEvent event)
     {
-        if(!hasPermissions(event)) return;
-        if(event.getAuthor().isBot()) return;
+        Helper.reload(event); // Loads the event information from file
+        if(!hasPermissions(event))
+            return;
+        if(event.getAuthor().isBot())
+            return;
         String[] args = event.getMessage().getContentRaw().split(" ");
         if(args[0].equalsIgnoreCase(Helper.getPrefix(event) + COMMAND_NAME))
         {
@@ -45,11 +54,11 @@ public abstract class CommandListener extends ListenerAdapter
             for(int i = 0; i < args.length - 1; i++)
             {
                 updatedArgs.append(args[i + 1]);
-                if(i != args.length - 2) updatedArgs.append(" ");
+                if(i != args.length - 2)
+                    updatedArgs.append(" ");
             }
             try
             {
-                Helper.reload(event); // Loads the event information from file
                 onCommandRun(updatedArgs.toString(), event);
                 Helper.save(event); // Updates the locally stored files
             }

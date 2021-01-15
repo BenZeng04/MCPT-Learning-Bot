@@ -35,10 +35,13 @@ public class Challenge
         imageURL = new SingleStringParameter("IMG", "IMG [image URL (\"null\" to remove)]");
         timeReward = new SingleIntegerParameter("TIME", "TIME [time reward (minutes)]");
         description = new SingleStringParameter("DESC", "DESC [description]");
-        prerequisite = new SingleStringParameter("PREREQ", "PREREQ [challenge prerequisite ID (\"null\" for no prerequisite)]");
-        bonusRewards = new StringParameterList("BONUS", "BONUS [bonusURL1, bonusURL2... (Image URLs) (\"null\" to remove)]");
+        prerequisite = new SingleStringParameter("PREREQ",
+                                                 "PREREQ [challenge prerequisite ID (\"null\" for no prerequisite)]");
+        bonusRewards = new StringParameterList("BONUS",
+                                               "BONUS [bonusURL1, bonusURL2... (Image URLs) (\"null\" to remove)]");
         submissionFormat = "submit [answer]";
-        addParameters(imageURL, description, bonusRewards, timeReward); // Default parameters that are shared across all challenges
+        addParameters(imageURL, description, bonusRewards, timeReward,
+                      prerequisite); // Default parameters that are shared across all challenges
     }
 
     public SingleStringParameter getImageURL()

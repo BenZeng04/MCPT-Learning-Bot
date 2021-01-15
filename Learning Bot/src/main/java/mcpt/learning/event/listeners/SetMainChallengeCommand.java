@@ -1,4 +1,4 @@
-package mcpt.learning.event.challenges.listeners;
+package mcpt.learning.event.listeners;
 
 import mcpt.learning.core.CommandListener;
 import mcpt.learning.core.Helper;
@@ -9,11 +9,11 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.awt.*;
 
-public class RemoveChallengeCommand extends CommandListener
+public class SetMainChallengeCommand extends CommandListener
 {
-    public RemoveChallengeCommand()
+    public SetMainChallengeCommand()
     {
-        super("RemoveChallenge", "removechallenge [challengeName]");
+        super("SetMainChallenge", "setMainChallenge [description]");
     }
 
     @Override
@@ -25,16 +25,14 @@ public class RemoveChallengeCommand extends CommandListener
     @Override
     public void onCommandRun(String args, GuildMessageReceivedEvent event)
     {
-        LabyrinthEvent labyrinthEvent = (LabyrinthEvent) Helper.getMCPTEvent(event);
-
         TextChannel channel = event.getChannel();
-        labyrinthEvent.removeChallenge(args);
-
         EmbedBuilder embed = new EmbedBuilder();
-        embed.setTitle("MCPT Learning Bot | Challenge " + args);
+        embed.setTitle("MCPT Learning Bot | SetMainChallenge");
         embed.setColor(new Color(0x3B6EFF));
         embed.setThumbnail("https://avatars0.githubusercontent.com/u/18370622?s=200&v=4");
-        embed.setDescription("Successfully removed challenge " + args + ".");
+        LabyrinthEvent labyrinthEvent = (LabyrinthEvent) Helper.getMCPTEvent(event);
+        labyrinthEvent.setMainChallenge(args.trim());
+        embed.setDescription("Successfully set the main challenge.");
         channel.sendMessage(embed.build()).queue();
     }
 }

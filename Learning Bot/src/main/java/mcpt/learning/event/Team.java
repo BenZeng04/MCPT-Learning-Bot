@@ -1,6 +1,6 @@
 package mcpt.learning.event;
 
-public class Team
+public abstract class Team
 {
     public final String NAME;
     public final String[] teamMemberIDs;
@@ -10,4 +10,13 @@ public class Team
         NAME = name;
         this.teamMemberIDs = teamMemberIDs;
     }
+
+    /**
+     * Creates a string describing information about the given team outside of listing names and members.
+     *
+     * @return a description
+     */
+    public abstract String buildTeamDescription();
+
+    public abstract int getPoints();
 }

@@ -6,7 +6,6 @@ import mcpt.learning.event.ChallengeSubmissionEvent;
 import mcpt.learning.event.LabyrinthEvent;
 import mcpt.learning.event.challenges.Challenge;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
@@ -23,7 +22,7 @@ public class GradeCommand extends CommandListener
     @Override
     public boolean hasPermissions(GuildMessageReceivedEvent event)
     {
-        return event.getMember().getPermissions().contains(Permission.ADMINISTRATOR);
+        return Helper.isExec(event);
     }
 
     @Override
@@ -42,11 +41,13 @@ public class GradeCommand extends CommandListener
             TextChannel channel = event.getChannel();
             EmbedBuilder embed = new EmbedBuilder();
 
-            embed.setTitle("MCPT Learning Bot | GradeCommand");
+            embed.setTitle("MCPT Learning Bot | Grade");
             embed.setColor(new Color(0x3B6EFF));
             embed.setThumbnail("https://avatars0.githubusercontent.com/u/18370622?s=200&v=4");
-            embed.setDescription("ERROR: The ID you have specified is either invalid or corresponds to a deleted challenge.");
-            labyrinthEvent.finishManualGrade(ID); // Finishes the pending manual grade by default to resolve unresolvable errors
+            embed.setDescription(
+                "ERROR: The ID you have specified is either invalid or corresponds to a deleted challenge.");
+            labyrinthEvent.finishManualGrade(
+                ID); // Finishes the pending manual grade by default to resolve unresolvable errors
             channel.sendMessage(embed.build()).queue();
             return;
         }

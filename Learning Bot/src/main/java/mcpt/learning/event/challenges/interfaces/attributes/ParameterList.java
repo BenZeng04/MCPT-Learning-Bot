@@ -12,7 +12,8 @@ public abstract class ParameterList<T> implements Parameter
     @Override
     public void init(String args)
     {
-        if(args.equalsIgnoreCase("null")) values = null;
+        if(args.equalsIgnoreCase("null"))
+            values = null;
         String[] values = args.split(",");
         this.values = new ArrayList<>();
         for(String value: values)
@@ -30,12 +31,15 @@ public abstract class ParameterList<T> implements Parameter
     public String toString()
     {
         StringBuilder ret = new StringBuilder();
-        if(values == null) ret.append("null");
-        else for(int i = 0; i < values.size(); i++)
-        {
-            ret.append(values.get(i));
-            if(i != values.size() - 1) ret.append(',');
-        }
+        if(values == null)
+            ret.append("null");
+        else
+            for(int i = 0; i < values.size(); i++)
+            {
+                ret.append(values.get(i));
+                if(i != values.size() - 1)
+                    ret.append(',');
+            }
         return name() + " " + Helper.lineCount(ret.toString()) + "\n" + ret.toString();
     }
 }
