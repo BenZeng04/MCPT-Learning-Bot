@@ -5,62 +5,13 @@
       <change afterPath="$PROJECT_DIR$/790786181142806528PATHWAYSchallenges.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/790786181142806528PATHWAYSlabyrinth.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/790786181142806528PATHWAYSteams.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/listeners/PendingSubmissionListCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/listeners/LabyrinthCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/listeners/LeaderboardCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/listeners/RemoveTeamCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/listeners/SetFinalSubmissionCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/listeners/SetLabyrinthImageCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/listeners/SetMainChallengeCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/listeners/SignUpCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/listeners/StartEventCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/listeners/TeamInfoCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/core/CommandListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/core/CommandListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/core/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/core/Helper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/core/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/core/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/LabyrinthEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/LabyrinthEvent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/LabyrinthTeam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/LabyrinthTeam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/MCPTEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/MCPTEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/Team.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/TeamEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/TeamEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/Challenge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/Challenge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/ChallengeFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/ChallengeFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/interfaces/Parameter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/interfaces/Parameter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/interfaces/attributes/ParameterList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/interfaces/attributes/ParameterList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/interfaces/attributes/SingleParameter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/interfaces/attributes/SingleParameter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/listeners/ChallengeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/listeners/ChallengeCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/listeners/ChallengeListCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/listeners/ChallengeListCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/listeners/CreateChallengeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/listeners/CreateChallengeCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/listeners/GradeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/listeners/GradeCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/listeners/InitChallengeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/listeners/InitChallengeCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/listeners/RemoveChallengeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/listeners/RemoveChallengeCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/listeners/SubmitCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/challenges/listeners/SubmitCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/listeners/CreateTeamCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/event/listeners/CreateTeamCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/listeners/HelpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mcpt/learning/listeners/HelpCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mcpt/learning/listeners/MessageCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/core/CommandListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/core/CommandListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/core/Helper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/core/Helper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/core/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/core/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/LabyrinthEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/LabyrinthEvent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/LabyrinthTeam.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/LabyrinthTeam.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/MCPTEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/MCPTEvent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/Team.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/Team.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/TeamEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/TeamEvent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/Challenge.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/Challenge.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/ChallengeFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/ChallengeFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/interfaces/attributes/ParameterList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/interfaces/attributes/ParameterList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/interfaces/attributes/SingleParameter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/interfaces/attributes/SingleParameter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/listeners/ChallengeCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/listeners/ChallengeCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/listeners/ChallengeListCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/listeners/ChallengeListCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/listeners/CreateChallengeCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/listeners/CreateChallengeCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/listeners/GradeCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/listeners/GradeCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/listeners/InitChallengeCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/listeners/InitChallengeCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/listeners/RemoveChallengeCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/listeners/RemoveChallengeCommand.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/listeners/SubmitCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/challenges/listeners/SubmitCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/listeners/CreateTeamCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/listeners/CreateTeamCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/listeners/HelpCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/listeners/HelpCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/listeners/MessageCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mcpt/learning/event/listeners/LeaderboardCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mcpt/learning/event/listeners/LeaderboardCommand.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,6 +158,8 @@
       <workItem from="1610648820954" duration="1053000" />
       <workItem from="1610652312224" duration="11323000" />
       <workItem from="1610676724826" duration="4583000" />
+      <workItem from="1610722572691" duration="3004000" />
+      <workItem from="1610730143376" duration="1711000" />
     </task>
     <servers />
   </component>
@@ -225,10 +178,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1609543470907" />
-    <state x="446" y="49" key="#com.intellij.ide.util.MemberChooser" timestamp="1610678309803">
+    <state x="446" y="49" key="#com.intellij.ide.util.MemberChooser" timestamp="1610723833628">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="446" y="49" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1610678309803" />
+    <state x="446" y="49" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1610723833628" />
     <state x="242" y="266" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1609561601601">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -253,22 +206,22 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="93" y="93" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1610338815720" />
-    <state width="1237" height="2" key="GridCell.Tab.0.bottom" timestamp="1610686010063">
+    <state width="1237" height="2" key="GridCell.Tab.0.bottom" timestamp="1610731603027">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="2" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1610686010063" />
-    <state width="1237" height="2" key="GridCell.Tab.0.center" timestamp="1610686010063">
+    <state width="1237" height="2" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1610731603027" />
+    <state width="1237" height="2" key="GridCell.Tab.0.center" timestamp="1610731603027">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="2" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1610686010063" />
-    <state width="1237" height="2" key="GridCell.Tab.0.left" timestamp="1610686010063">
+    <state width="1237" height="2" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1610731603027" />
+    <state width="1237" height="2" key="GridCell.Tab.0.left" timestamp="1610731603027">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="2" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1610686010063" />
-    <state width="1237" height="2" key="GridCell.Tab.0.right" timestamp="1610686010063">
+    <state width="1237" height="2" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1610731603027" />
+    <state width="1237" height="2" key="GridCell.Tab.0.right" timestamp="1610731603027">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="2" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1610686010063" />
+    <state width="1237" height="2" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1610731603027" />
     <state width="1237" height="204" key="GridCell.Tab.1.bottom" timestamp="1609981109108">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -297,10 +250,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="199" y="29" key="VCS.ChangeListViewerDialog/0.0.1280.680@0.0.1280.680" timestamp="1609541493580" />
-    <state x="337" y="165" key="com.intellij.ide.util.TipDialog" timestamp="1610676723871">
+    <state x="337" y="165" key="com.intellij.ide.util.TipDialog" timestamp="1610730142858">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="337" y="165" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1610676723871" />
+    <state x="337" y="165" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1610730142858" />
     <state x="315" y="30" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1609186179977">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -313,10 +266,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="107" key="extract.method.dialog/0.0.1280.680@0.0.1280.680" timestamp="1610339778221" />
-    <state x="335" y="71" width="739" height="606" key="find.popup" timestamp="1610685766686">
+    <state x="335" y="71" width="739" height="606" key="find.popup" timestamp="1610722744546">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="335" y="71" width="739" height="606" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1610685766686" />
+    <state x="335" y="71" width="739" height="606" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1610722744546" />
     <state x="91" y="0" key="new project wizard" timestamp="1610684829158">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

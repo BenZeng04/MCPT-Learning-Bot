@@ -26,6 +26,12 @@ public class SubmitCommand extends CommandListener
     @Override
     public void onCommandRun(String args, GuildMessageReceivedEvent event)
     {
+        TextChannel channel = event.getChannel();
+        EmbedBuilder embed = new EmbedBuilder();
+        embed.setTitle("MCPT Learning Bot | Submit");
+        embed.setColor(new Color(0x3B6EFF));
+        embed.setThumbnail("https://avatars0.githubusercontent.com/u/18370622?s=200&v=4");
+
         LabyrinthEvent labyrinthEvent = (LabyrinthEvent) Helper.getMCPTEvent(event);
         LabyrinthTeam team = labyrinthEvent.getTeamFromUser(event.getMember().getId());
 
@@ -38,11 +44,6 @@ public class SubmitCommand extends CommandListener
             // Default errors for non-admins
             if(team == null)
             {
-                TextChannel channel = event.getChannel();
-                EmbedBuilder embed = new EmbedBuilder();
-                embed.setTitle("MCPT Learning Bot | Submit");
-                embed.setColor(new Color(0x3B6EFF));
-                embed.setThumbnail("https://avatars0.githubusercontent.com/u/18370622?s=200&v=4");
                 embed.setDescription("ERROR: You're not in a team!");
                 channel.sendMessage(embed.build()).queue();
                 return;
@@ -50,11 +51,6 @@ public class SubmitCommand extends CommandListener
             if(!team.unlocked(challenge) || team.submissionTimeOver() || !labyrinthEvent.hasStarted() || team.attempted(
                 challenge))
             {
-                TextChannel channel = event.getChannel();
-                EmbedBuilder embed = new EmbedBuilder();
-                embed.setTitle("MCPT Learning Bot | Submit");
-                embed.setColor(new Color(0x3B6EFF));
-                embed.setThumbnail("https://avatars0.githubusercontent.com/u/18370622?s=200&v=4");
                 embed.setDescription(
                     "ERROR: Your submission could not be delivered because your window to submit to the event hasn't started or is over, you have not unlocked this challenge yet, or you have already submitted to this challenge.");
                 channel.sendMessage(embed.build()).queue();
@@ -87,8 +83,6 @@ public class SubmitCommand extends CommandListener
             }
             else
             {
-                TextChannel channel = event.getChannel();
-                EmbedBuilder embed = new EmbedBuilder();
                 embed.setTitle("MCPT Learning Bot | Challenge " + challengeName);
                 embed.setColor(new Color(0x3B6EFF));
                 embed.setThumbnail("https://avatars0.githubusercontent.com/u/18370622?s=200&v=4");
@@ -129,8 +123,6 @@ public class SubmitCommand extends CommandListener
         }
         catch(Exception e)
         {
-            TextChannel channel = event.getChannel();
-            EmbedBuilder embed = new EmbedBuilder();
             embed.setTitle("MCPT Learning Bot | Challenge " + challengeName);
             embed.setColor(new Color(0x3B6EFF));
             embed.setThumbnail("https://avatars0.githubusercontent.com/u/18370622?s=200&v=4");

@@ -194,8 +194,12 @@ public class LabyrinthTeam extends Team
         bonusTimeRecieved = Long.parseLong(data[0]);
         points = Integer.parseInt(data[1]);
         String[] challengeAttempts = args[1].split(" ");
-        this.challengeAttempts.addAll(Arrays.asList(challengeAttempts));
+        for(String str: challengeAttempts)
+            if(str.trim().length() != 0)
+                this.challengeAttempts.add(str);
         String[] correctChallengeAttempts = args[2].split(" ");
-        this.correctChallengeAttempts.addAll(Arrays.asList(correctChallengeAttempts));
+        for(String str: correctChallengeAttempts)
+            if(str.trim().length() != 0)
+                this.correctChallengeAttempts.add(str);
     }
 }

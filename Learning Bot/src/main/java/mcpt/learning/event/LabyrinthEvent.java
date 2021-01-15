@@ -246,7 +246,9 @@ public class LabyrinthEvent implements TeamEvent
             mainChallenge = desc.toString();
             imageURL = br.readLine();
             teamCategory = br.readLine();
-            teamChannels.addAll(Arrays.asList(br.readLine().split(" ")));
+            for(String str: Arrays.asList(br.readLine().split(" ")))
+                if(str.trim().length() != 0)
+                    teamChannels.add(str);
         }
         catch(Exception e)
         {
@@ -336,6 +338,7 @@ public class LabyrinthEvent implements TeamEvent
             for(LabyrinthTeam team: teams)
             {
                 category.createTextChannel(team.NAME).queue(textChannel -> {
+                    teamChannels.add(textChannel.getId());
                     for(String teamMember: team.teamMemberIDs)
                         if(guild.getMemberById(teamMember) != null)
                             textChannel.putPermissionOverride(
