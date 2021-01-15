@@ -22,7 +22,7 @@ public class SignUpCommand extends CommandListener
         embed.setColor(new Color(0x3B6EFF));
         embed.setThumbnail("https://avatars0.githubusercontent.com/u/18370622?s=200&v=4");
         // TODO: Link should be set via a command
-        embed.setDescription("Sign up at https://forms.gle/Hycb1BqL7j4EAeFW7!");
+        embed.setDescription("Sign up at https://forms.gle/Hycb1BqL7j4EAeFW7");
         channel.sendMessage(embed.build()).queue();
     }
 }

@@ -55,6 +55,18 @@ public class PracticeCommand extends CommandListener
             .getValue() + "\n\nSubmit to this challenge using: " + Helper.getPrefix(
             event) + "submit [answer]" + "\n\n" + randomChallenge.getPrompt().createPrompt());
 
+        if(randomChallenge.getImageURL().getValue() != null)
+        {
+            try
+            {
+                embed.setImage(randomChallenge.getImageURL().getValue());
+            }
+            catch(Exception e)
+            {
+                embed.setDescription("ERROR: Invalid Image URL!");
+            }
+        }
+
         EmbedBuilder timeOver = new EmbedBuilder();
         timeOver.setTitle("Time is over!");
         timeOver.setDescription("You can check the current practice standings with !leaderboard.");
